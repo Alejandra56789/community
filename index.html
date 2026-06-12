@@ -310,6 +310,12 @@
   .vtest-item{border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 20px 50px rgba(0,0,0,.32);background:#000;width:100%;margin:0 auto}
   .vtest-item.portrait{max-width:330px}
   .vtest-item.land{max-width:560px}
+
+  /* ---- checkout box ---- */
+  .checkout-box{max-width:440px;margin:30px auto 0;background:#fff;border-radius:18px;padding:26px 26px 12px;box-shadow:0 26px 60px rgba(0,0,0,.42)}
+  .checkout-box .co-price{color:#0A3030;font-weight:900;font-size:2.6rem;line-height:1}
+  .checkout-box .co-per{font-size:1.15rem;color:#5b6b6b;font-weight:700;margin-left:2px}
+  .checkout-box .co-sub{color:#5b6b6b;font-size:.84rem;margin:8px 0 20px}
 </style>
 </head>
 <body>
@@ -326,7 +332,7 @@
       </div>
 
       <div class="hero-cta" style="margin-top:34px">
-        <a href="#offer" class="btn btn-primary">Join the Community Today For $57/mo</a>
+        <a href="#checkout" class="btn btn-primary">Join the Community Today For $57/mo</a>
       </div>
       <p class="reassure">No living abroad required · No endless grammar tables · Real practice from day one</p>
     </div>
@@ -554,8 +560,7 @@
         </div>
 
         <div class="cta-row">
-          <!-- TODO: replace # with your checkout / signup link -->
-          <a href="#" class="btn btn-primary">Join the Community Today For $57/mo</a>
+          <a href="#checkout" class="btn btn-primary">Join the Community Today For $57/mo</a>
           <p class="guarantee">Monthly membership · Cancel anytime · Start within minutes of joining</p>
         </div>
       </div>
@@ -641,4 +646,68 @@
         </details>
         <details>
           <summary>How long until I see results? <span class="plus">+</span></summary>
-          <div class="body">Most members notice a significant jump in comprehension within the first six to eight weeks. Conversational ability — holding a basic exchange — typically arrives between weeks sixteen and twenty. It d
+          <div class="body">Most members notice a significant jump in comprehension within the first six to eight weeks. Conversational ability — holding a basic exchange — typically arrives between weeks sixteen and twenty. It depends on your starting point and consistency, but the progress is clear.</div>
+        </details>
+        <details>
+          <summary>Do I need any Spanish background? <span class="plus">+</span></summary>
+          <div class="body">No. The program starts from zero. If you already have a base, we start where you are and move faster. Either way, you never begin feeling lost.</div>
+        </details>
+        <details>
+          <summary>What happens the moment I join? <span class="plus">+</span></summary>
+          <div class="body">You get immediate, progressive access to the program, the practice materials and the private community. You can start within minutes of joining.</div>
+        </details>
+        <details>
+          <summary>Is this available on iOS and Android? <span class="plus">+</span></summary>
+          <div class="body">The community and all materials are accessible from any device with a browser, so you can learn and practice wherever you are.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA / CHECKOUT -->
+  <section class="final" id="checkout">
+    <div class="wrap">
+      <span class="eyebrow">Still here? You're not like everyone else</span>
+      <h2>Start speaking real Spanish <span class="turq">today</span></h2>
+      <p>What you can't build alone is the structure, the progression, and the real practice environment that make the language actually stick. Join below and get instant access.</p>
+      <div class="checkout-box">
+        <div class="co-price"><span class="co-now">$57</span><span class="co-per">/mo</span></div>
+        <p class="co-sub">Monthly membership · Cancel anytime · 7-day money-back guarantee</p>
+        <div id="paypal-button-container-P-3RA10924ET035924YNIRTWBA"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="brand center" style="justify-content:center">ProgresSpanish</div>
+      <div class="flinks">
+        <a href="https://www.instagram.com/progresspanish/" target="_blank" rel="noopener">Instagram</a>
+        <a href="#method">The Method</a>
+        <a href="#offer">What You Get</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <p>© 2026 ProgresSpanish. All rights reserved. · Real Spanish for real life.</p>
+    </div>
+  </footer>
+
+  <script src="https://player.vimeo.com/api/player.js"></script>
+
+  <!-- PayPal subscription checkout -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AdHQsrOHZwdWZGbLkT-GYUEc64Bwu0wsiDEJ8eiYzpZ27I4D3Ok8xFKI6uInYZT5YKF3LSt_D5ZE41fd&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+  <script>
+    paypal.Buttons({
+      style: { shape: 'rect', color: 'gold', layout: 'vertical', label: 'subscribe' },
+      createSubscription: function(data, actions) {
+        return actions.subscription.create({
+          plan_id: 'P-3RA10924ET035924YNIRTWBA'
+        });
+      },
+      onApprove: function(data, actions) {
+        alert(data.subscriptionID);
+      }
+    }).render('#paypal-button-container-P-3RA10924ET035924YNIRTWBA');
+  </script>
+</body>
+</html>
