@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to ProgresSpanish — You're In!</title>
+<style>
+  :root{
+    --bg:#0E4444;
+    --bg-2:#0B3838;
+    --bg-3:#0A3030;
+    --card:#13504F;
+    --line:rgba(98,217,214,.18);
+    --turq:#62D9D6;
+    --coral:#E0A48C;
+    --coral-deep:#d8916f;
+    --cream:#F3EFC9;
+    --text:#EAF6F6;
+    --muted:#9FBFBE;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--text);
+    font-family:'Segoe UI',system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased;
+    min-height:100vh;display:flex;flex-direction:column;
+  }
+  h1,h2,h3{line-height:1.15;letter-spacing:-.01em;font-weight:800}
+  h1{font-size:clamp(2rem,5vw,3.2rem)}
+  h2{font-size:clamp(1.4rem,3vw,2rem)}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px;width:100%}
+  .turq{color:var(--turq)}
+  .muted{color:var(--muted)}
+  .eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;font-weight:700;color:var(--coral);display:inline-block;margin-bottom:16px}
+
+  /* hero */
+  .hero{flex:1;text-align:center;padding:72px 0 56px;background:
+     radial-gradient(800px 360px at 50% -8%,rgba(98,217,214,.12),transparent 70%)}
+  .badge-check{width:96px;height:96px;border-radius:50%;margin:0 auto 26px;
+     background:radial-gradient(circle at 35% 30%,var(--turq),#2b8c8a);
+     display:flex;align-items:center;justify-content:center;
+     box-shadow:0 18px 50px rgba(98,217,214,.28)}
+  .badge-check svg{width:48px;height:48px}
+  .hero h1{max-width:18ch;margin:0 auto 16px}
+  .hero .lead{font-size:clamp(1rem,2vw,1.15rem);color:var(--muted);max-width:54ch;margin:0 auto}
+
+  /* steps */
+  .next{padding:8px 0 24px}
+  .next h2{text-align:center;margin-bottom:8px}
+  .next .sub{text-align:center;color:var(--muted);margin-bottom:34px}
+  .steps{display:flex;flex-direction:column;gap:16px}
+  .step{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;text-align:left}
+  .step .num{flex:0 0 auto;width:44px;height:44px;border-radius:12px;background:var(--turq);color:#073231;font-weight:900;font-size:1.15rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:4px}
+  .step p{color:var(--muted);font-size:.96rem}
+  .step a.inline{color:var(--turq);font-weight:700;border-bottom:1px solid rgba(98,217,214,.4)}
+
+  /* cta */
+  .cta-band{text-align:center;padding:14px 0 64px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:1.05rem;
+     padding:17px 34px;border-radius:999px;background:var(--cream);color:#0A3030;cursor:pointer;
+     box-shadow:0 12px 30px rgba(243,239,201,.2);transition:transform .15s ease,box-shadow .15s ease}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 38px rgba(243,239,201,.3)}
+  .cta-band .help{margin-top:20px;color:var(--muted);font-size:.9rem}
+  .cta-band .help a{color:var(--turq);font-weight:700}
+
+  footer{background:var(--bg-3);border-top:1px solid var(--line);padding:28px 0;text-align:center;color:var(--muted);font-size:.82rem}
+  footer .brand{font-weight:800;color:var(--text);font-size:1.05rem;margin-bottom:8px}
+</style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="badge-check">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#073231" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      </div>
+      <span class="eyebrow">Payment confirmed</span>
+      <h1>You're in. <span class="turq">Welcome to the community!</span></h1>
+      <p class="lead">Your spot is secured and your access is being set up right now. Here's exactly what to do next so you start speaking real Spanish from day one.</p>
+    </div>
+  </header>
+
+  <!-- NEXT STEPS -->
+  <section class="next">
+    <div class="wrap">
+      <h2>Your next steps</h2>
+      <p class="sub">Four quick things — take 5 minutes now and you're ready to go.</p>
+      <div class="steps">
+        <div class="step">
+          <span class="num">1</span>
+          <div>
+            <h3>Check your email</h3>
+            <p>We just sent your welcome email with your login details and community invite. If you don't see it in a couple of minutes, check your <strong>spam or promotions</strong> folder and mark it as "not spam" so you never miss an update.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="num">2</span>
+          <div>
+            <h3>Join the private community</h3>
+            <p>Tap the button below (or the link in your email) to enter the private practice community. Introduce yourself in the welcome channel — your accountability and practice partners are already there.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="num">3</span>
+          <div>
+            <h3>Start with Step 1: Foundations</h3>
+            <p>Inside, go straight to <strong>Step 1</strong> of the program. Don't try to do everything at once — follow the roadmap in order. 30–45 minutes a day is all you need to make real, consistent progress.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="num">4</span>
+          <div>
+            <h3>Save the weekly live session</h3>
+            <p>Add the <strong>weekly group Q&amp;A / live session</strong> to your calendar — details are posted in the community. It's where real questions get answered and your speaking confidence grows fastest.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <div class="wrap">
+      <p class="help">Need help or didn't get your email? Write to <a href="mailto:hello@progresspanish.com">hello@progresspanish.com</a> and we'll sort it out fast.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="brand">ProgresSpanish</div>
+      <p>© 2026 ProgresSpanish. All rights reserved. · Real Spanish for real life.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
