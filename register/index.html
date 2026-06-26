@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Training: Speak Real Spanish With Confidence | ProgresSpanish</title>
+<style>
+  :root{
+    --bg:#0E4444;
+    --bg-2:#0B3838;
+    --bg-3:#0A3030;
+    --card:#13504F;
+    --line:rgba(98,217,214,.18);
+    --turq:#62D9D6;
+    --coral:#E0A48C;
+    --coral-deep:#d8916f;
+    --cream:#F3EFC9;
+    --text:#EAF6F6;
+    --muted:#9FBFBE;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--bg);color:var(--text);min-height:100vh;
+    font-family:'Segoe UI',system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(700px 380px at 15% 0%,rgba(98,217,214,.12),transparent 70%),
+      radial-gradient(700px 420px at 100% 100%,rgba(224,164,140,.10),transparent 70%);
+    display:flex;flex-direction:column;
+  }
+  h1{font-size:clamp(2.1rem,4.6vw,3.5rem);line-height:1.08;font-weight:800;letter-spacing:-.015em}
+  .turq{color:var(--turq)}
+  .cream{color:var(--cream)}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;width:100%}
+
+  /* top bar */
+  .topbar{padding:22px 0}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem}
+  .brand .dot{width:28px;height:28px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--turq),#2b8c8a)}
+
+  /* hero grid */
+  .hero{flex:1;display:grid;grid-template-columns:1.1fr .9fr;gap:54px;align-items:center;padding:30px 0 100px}
+  @media(max-width:900px){.hero{grid-template-columns:1fr;gap:36px;padding:10px 0 90px}}
+
+  .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(224,164,140,.45);
+     background:rgba(224,164,140,.10);color:var(--coral);font-weight:800;font-size:.78rem;
+     letter-spacing:.16em;text-transform:uppercase;padding:9px 18px;border-radius:999px;margin-bottom:24px}
+  .hero h1{margin-bottom:20px}
+  .hero .sub{color:var(--muted);font-size:clamp(1rem,1.5vw,1.15rem);max-width:46ch;margin-bottom:26px}
+  .benefits{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+  .benefits li{display:flex;gap:12px;align-items:flex-start;font-size:1rem}
+  .benefits .ic{flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:var(--turq);color:#073231;
+     font-weight:900;display:flex;align-items:center;justify-content:center;font-size:.8rem;margin-top:3px}
+  .host{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:.92rem}
+  .host .av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--turq))}
+  .host b{color:var(--text)}
+
+  /* form card */
+  .formcard{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:34px 32px;
+     box-shadow:0 34px 80px rgba(0,0,0,.4)}
+  .formcard .ftag{display:inline-block;background:rgba(98,217,214,.14);color:var(--turq);font-weight:800;
+     font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:8px;margin-bottom:16px}
+  .formcard h2{font-size:1.5rem;font-weight:800;margin-bottom:6px}
+  .formcard .fsub{color:var(--muted);font-size:.95rem;margin-bottom:24px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:.82rem;font-weight:700;color:var(--muted);margin-bottom:7px}
+  .field input{width:100%;background:var(--bg-3);border:1px solid var(--line);border-radius:12px;
+     color:var(--text);font-size:1rem;padding:14px 16px;outline:none;transition:border-color .15s,box-shadow .15s}
+  .field input::placeholder{color:#6f8d8c}
+  .field input:focus{border-color:var(--turq);box-shadow:0 0 0 3px rgba(98,217,214,.18)}
+  .submit{width:100%;border:none;cursor:pointer;background:var(--cream);color:#0A3030;font-weight:800;
+     font-size:1.05rem;padding:16px;border-radius:999px;margin-top:6px;
+     box-shadow:0 12px 30px rgba(243,239,201,.2);transition:transform .15s,box-shadow .15s}
+  .submit:hover{transform:translateY(-2px);box-shadow:0 16px 38px rgba(243,239,201,.3)}
+  .formcard .legal{text-align:center;color:var(--muted);font-size:.78rem;margin-top:16px}
+  .formcard .instant{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--turq);
+     font-size:.84rem;font-weight:700;margin-top:14px}
+
+  footer{text-align:center;color:var(--muted);font-size:.8rem;padding:24px 0;border-top:1px solid var(--line)}
+
+  /* extra breathing room on mobile */
+  @media(max-width:600px){
+    .wrap{padding:0 28px}
+    h1{font-size:clamp(1.9rem,8vw,2.4rem)}
+    .formcard{padding:30px 24px}
+  }
+</style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="wrap">
+      <div class="brand"><span class="dot"></span> ProgresSpanish</div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero wrap">
+    <!-- LEFT: pitch -->
+    <div>
+      <span class="pill">Free training · Watch instantly</span>
+      <h1>Speak Real Spanish, <span class="turq">without living abroad</span> or endless grammar</h1>
+      <p class="sub">A free training that reveals exactly why studying harder hasn't made you fluent, and the simple 4-step system that finally gets you speaking with confidence, in real conversations that matter.</p>
+      <ul class="benefits">
+        <li><span class="ic">✓</span> Why apps and classes leave you stuck, and what actually works.</li>
+        <li><span class="ic">✓</span> The 4-step system to go from "one word in four" to real conversation.</li>
+        <li><span class="ic">✓</span> How busy adults make real progress in just 30 to 45 minutes a day.</li>
+      </ul>
+      <div class="host">
+        <span class="av"></span>
+        <div>Hosted by <b>Alejandra</b> · ProgresSpanish</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: registration form -->
+    <div>
+      <div class="formcard">
+        <span class="ftag">Reserve your spot</span>
+        <h2>Get the free training</h2>
+        <p class="fsub">Enter your details and get instant access to the training video.</p>
+
+        <!--
+          TODO: connect this form to your email tool / Make webhook.
+          Option A: set action="" to your provider's form endpoint (systeme.io, Mailchimp, etc.) and remove the JS redirect.
+          Option B: keep the JS handler below to POST to a Make webhook and then send the viewer to the VSL.
+        -->
+        <form id="optin" novalidate>
+          <div class="field">
+            <label for="name">First name</label>
+            <input id="name" name="first_name" type="text" placeholder="Your first name" required autocomplete="given-name">
+          </div>
+          <div class="field">
+            <label for="email">Email address</label>
+            <input id="email" name="email" type="email" placeholder="you@email.com" required autocomplete="email">
+          </div>
+          <button type="submit" class="submit">Get instant access →</button>
+        </form>
+
+        <div class="instant">▶ Your training unlocks immediately after you register</div>
+        <p class="legal">We respect your privacy. No spam. Unsubscribe anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">© 2026 ProgresSpanish. All rights reserved. · Real Spanish for real life.</div>
+  </footer>
+
+  <script>
+    document.getElementById('optin').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = document.getElementById('name').value.trim();
+      var email = document.getElementById('email').value.trim();
+      if (!name || !email || email.indexOf('@') === -1) {
+        alert('Please enter your name and a valid email.');
+        return;
+      }
+
+      // --- Save the lead to the Google Sheet (Apps Script Web App) ---
+      // Paste your deployed Web App URL here (it ends in /exec):
+      var ENDPOINT = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
+
+      var redirected = false;
+      function go() {
+        if (redirected) return;
+        redirected = true;
+        window.location.href = 'https://progresspanish.com/spanish-community';
+      }
+
+      if (ENDPOINT.indexOf('http') === 0) {
+        // text/plain avoids a CORS preflight; no-cors = fire-and-forget
+        fetch(ENDPOINT, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ first_name: name, email: email, source: 'register.html' })
+        }).then(go, go);
+        setTimeout(go, 2500); // safety fallback if the network hangs
+      } else {
+        go(); // no endpoint set yet — just redirect
+      }
+    });
+  </script>
+
+</body>
+</html>
