@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '633455245862715');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ProgresSpanish — Speak Real Spanish With Confidence</title>
@@ -148,10 +165,12 @@
   .yes{color:var(--turq);font-weight:900;font-size:1.15rem}
   .no{color:#e07a6e;font-weight:900;font-size:1.15rem}
   @media(max-width:760px){
-    .compare{column-gap:6px}
-    .compare .cell{padding:12px 7px;font-size:.76rem}
-    .compare .colhead{font-size:.72rem;padding:10px 5px}
-    .yes,.no{font-size:1rem}
+    .compare{grid-template-columns:1fr;column-gap:0;row-gap:0}
+    .compare .cell{border-bottom:none;border-top:1px solid var(--line);border-radius:0}
+    .compare .feature{font-weight:800;color:var(--text);padding-bottom:4px}
+    .compare .them::before{content:"Apps & generic courses: ";color:var(--muted);font-weight:600;margin-right:6px}
+    .compare .us::before{content:"ProgresSpanish: ";color:var(--turq);font-weight:700;margin-right:6px}
+    .compare .colhead{display:none}
   }
 
   /* ---- method steps timeline ---- */
@@ -460,7 +479,7 @@
         <div class="tcard">
           <div class="stars">★★★★★</div>
           <p>"I have been learning with Alejandra, and she has been amazing every step of the way. Since starting my journey, she has improved my vocabulary and conversational skills in Spanish so much. She is very patient and keeps me engaged with various games and activities. I am very thankful to have her as my Spanish tutor."</p>
-          <div class="head"><img class="av" src="testimonial-matt.jpeg" alt="Matt" onerror="this.outerHTML='&lt;span class=\'av\'&gt;&lt;/span&gt;'"><div><div class="name">Matt</div><div class="role">Vocabulary &amp; conversation, leveled up</div></div></div>
+          <div class="head"><img class="av" src="testimonial-matt.jpg" alt="Matt" onerror="this.outerHTML='&lt;span class=\'av\'&gt;&lt;/span&gt;'"><div><div class="name">Matt</div><div class="role">Vocabulary &amp; conversation, leveled up</div></div></div>
         </div>
         <div class="tcard">
           <div class="stars">★★★★★</div>
@@ -525,6 +544,7 @@
           <div class="mbody"><h3>Weekly group session</h3><p>Live Q&amp;A and real culture/situation topics with Alejandra.</p></div>
         </div>
       </div>
+      <p class="center mt muted">Swap these placeholders for real screenshots of your platform, library and community for maximum impact.</p>
     </div>
   </section>
 
@@ -567,7 +587,7 @@
         <div class="seal"><span class="big">7</span><span class="small">DAY<br>GUARANTEE</span></div>
         <div>
           <h3>Try it risk-free for 7 days</h3>
-          <p>Your card won't be charged today. Join the Academy, go through the roadmap, and meet the community. If it isn't the clear, practical system I promised—and not "more of the same"—simply cancel within your first 7 days and you won't owe a single cent. No forms, no questions asked, no hard feelings. The only risk is staying exactly where you are.</p>
+          <p>Join, go through the roadmap, meet the community. If it isn't the clear, practical system I promised — and not "more of the same" — email me within 7 days and I'll refund every cent. No forms, no hard feelings. The only risk is staying exactly where you are.</p>
         </div>
       </div>
     </div>
@@ -669,17 +689,8 @@
       <p>What you can't build alone is the structure, the progression, and the real practice environment that make the language actually stick. Join below and get instant access.</p>
       <div class="checkout-box">
         <div class="co-price"><span class="co-now">$57</span><span class="co-per">/mo</span></div>
-        <p class="co-sub">Monthly membership · Cancel anytime · Try 7 days risk-free</p>
+        <p class="co-sub">Monthly membership · Cancel anytime · 7-day money-back guarantee</p>
         <div id="paypal-button-container-P-3RA10924ET035924YNIRTWBA"></div>
-      </div>
-
-      <!-- GUARANTEE -->
-      <div class="guarantee-box">
-        <div class="seal"><span class="big">7</span><span class="small">DAY<br>GUARANTEE</span></div>
-        <div>
-          <h3>Try it risk-free for 7 days</h3>
-          <p>Your card won't be charged today. Join the Academy, go through the roadmap, and meet the community. If it isn't the clear, practical system I promised—and not "more of the same"—simply cancel within your first 7 days and you won't owe a single cent. No forms, no questions asked, no hard feelings. The only risk is staying exactly where you are.</p>
-        </div>
       </div>
     </div>
   </section>
@@ -711,7 +722,7 @@
         });
       },
       onApprove: function(data, actions) {
-        // Subscription approved — send the buyer to the thank-you page
+        // The actual "Purchase" conversion fires on thank-you.html once the buyer lands there.
         window.location.href = 'thank-you.html';
       }
     }).render('#paypal-button-container-P-3RA10924ET035924YNIRTWBA');
