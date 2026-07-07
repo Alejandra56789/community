@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '633455245862715');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Free Training: Speak Real Spanish With Confidence | ProgresSpanish</title>
@@ -31,18 +48,14 @@
   h1{font-size:clamp(2.1rem,4.6vw,3.5rem);line-height:1.08;font-weight:800;letter-spacing:-.015em}
   .turq{color:var(--turq)}
   .cream{color:var(--cream)}
-
   .wrap{max-width:1120px;margin:0 auto;padding:0 24px;width:100%}
-
   /* top bar */
   .topbar{padding:22px 0}
   .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem}
   .brand .dot{width:28px;height:28px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--turq),#2b8c8a)}
-
   /* hero grid */
   .hero{flex:1;display:grid;grid-template-columns:1.1fr .9fr;gap:54px;align-items:center;padding:30px 0 100px}
   @media(max-width:900px){.hero{grid-template-columns:1fr;gap:36px;padding:10px 0 90px}}
-
   .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(224,164,140,.45);
      background:rgba(224,164,140,.10);color:var(--coral);font-weight:800;font-size:.78rem;
      letter-spacing:.16em;text-transform:uppercase;padding:9px 18px;border-radius:999px;margin-bottom:24px}
@@ -55,7 +68,6 @@
   .host{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:.92rem}
   .host .av{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--turq))}
   .host b{color:var(--text)}
-
   /* form card */
   .formcard{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:34px 32px;
      box-shadow:0 34px 80px rgba(0,0,0,.4)}
@@ -76,9 +88,7 @@
   .formcard .legal{text-align:center;color:var(--muted);font-size:.78rem;margin-top:16px}
   .formcard .instant{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--turq);
      font-size:.84rem;font-weight:700;margin-top:14px}
-
   footer{text-align:center;color:var(--muted);font-size:.8rem;padding:24px 0;border-top:1px solid var(--line)}
-
   /* extra breathing room on mobile */
   @media(max-width:600px){
     .wrap{padding:0 28px}
@@ -88,14 +98,12 @@
 </style>
 </head>
 <body>
-
   <!-- TOP BAR -->
   <div class="topbar">
     <div class="wrap">
       <div class="brand">ProgresSpanish</div>
     </div>
   </div>
-
   <!-- HERO -->
   <section class="hero wrap">
     <!-- LEFT: pitch -->
@@ -113,14 +121,12 @@
         <div>Hosted by <b>Alejandra</b> · ProgresSpanish</div>
       </div>
     </div>
-
     <!-- RIGHT: registration form -->
     <div>
       <div class="formcard">
         <span class="ftag">Reserve your spot</span>
         <h2>Get the free training</h2>
         <p class="fsub">Enter your details and get instant access to the training video.</p>
-
         <!--
           TODO: connect this form to your email tool / Make webhook.
           Option A: set action="" to your provider's form endpoint (systeme.io, Mailchimp, etc.) and remove the JS redirect.
@@ -137,17 +143,14 @@
           </div>
           <button type="submit" class="submit">Get instant access →</button>
         </form>
-
         <div class="instant">▶ Your training unlocks immediately after you register</div>
         <p class="legal">We respect your privacy. No spam. Unsubscribe anytime.</p>
       </div>
     </div>
   </section>
-
   <footer>
     <div class="wrap">© 2026 ProgresSpanish. All rights reserved. · Real Spanish for real life.</div>
   </footer>
-
   <script>
     document.getElementById('optin').addEventListener('submit', function (e) {
       e.preventDefault();
@@ -157,18 +160,15 @@
         alert('Please enter your name and a valid email.');
         return;
       }
-
       // --- Save the lead to the Google Sheet (Apps Script Web App) ---
       // Paste your deployed Web App URL here (it ends in /exec):
       var ENDPOINT = 'https://script.google.com/macros/s/AKfycbwVbw7Qy9jYL8CbXD902fWOahI5fvOjjTEXlyKxpGncLa_O-UTJgPBBihk8VJAjSB9yUw/exec';
-
       var redirected = false;
       function go() {
         if (redirected) return;
         redirected = true;
         window.location.href = 'https://progresspanish.com/spanish-community';
       }
-
       if (ENDPOINT.indexOf('http') === 0) {
         // text/plain avoids a CORS preflight; no-cors = fire-and-forget
         fetch(ENDPOINT, {
@@ -183,6 +183,5 @@
       }
     });
   </script>
-
 </body>
 </html>
