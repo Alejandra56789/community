@@ -156,11 +156,14 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
   .yes{color:var(--turq);font-weight:900;font-size:1.15rem}
   .no{color:#e07a6e;font-weight:900;font-size:1.15rem}
   @media(max-width:760px){
-    .compare{grid-template-columns:1fr;column-gap:0;row-gap:0}
-    .compare .cell{border-bottom:none;border-top:1px solid var(--line);border-radius:0}
-    .compare .feature{font-weight:800;color:var(--text);padding-bottom:4px}
-    .compare .them::before{content:"Apps & generic courses: ";color:var(--muted);font-weight:600;margin-right:6px}
-    .compare .us::before{content:"ProgresSpanish: ";color:var(--turq);font-weight:700;margin-right:6px}
+    .compare{grid-template-columns:1fr 1fr;column-gap:10px;row-gap:8px}
+    .compare .cell{border:none;border-radius:0;background:transparent;padding:0;display:block}
+    .compare .feature{grid-column:1 / -1;font-weight:800;color:var(--text);padding:18px 2px 2px;border-top:1px solid var(--line)}
+    .compare .them,.compare .us{flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:14px 10px;border-radius:12px}
+    .compare .them{background:rgba(198,86,74,.12);box-shadow:inset 0 0 0 1px rgba(198,86,74,.25)}
+    .compare .us{background:rgba(98,217,214,.08);box-shadow:inset 0 0 0 1px rgba(98,217,214,.25)}
+    .compare .them::before{content:"Apps & generic courses";display:block;color:var(--muted);font-weight:600;font-size:.7rem;text-transform:uppercase;letter-spacing:.03em;margin-bottom:8px}
+    .compare .us::before{content:"ProgresSpanish";display:block;color:var(--turq);font-weight:700;font-size:.7rem;text-transform:uppercase;letter-spacing:.03em;margin-bottom:8px}
     .compare .colhead{display:none}
   }
   /* ---- method steps timeline ---- */
@@ -343,7 +346,7 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
       </div>
       <div class="gate-hide" hidden>
         <div class="hero-cta" style="margin-top:34px">
-          <a href="#checkout" class="btn btn-primary">Join the Community Today For $57/mo</a>
+          <a href="#checkout" class="btn btn-primary">Start Your 7 Day Free Trial</a>
         </div>
         <p class="reassure">No living abroad required · No endless grammar tables · Real practice from day one</p>
       </div>
@@ -555,16 +558,16 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
           <span class="save">Founding-member rate · cancel anytime</span>
         </div>
         <div class="cta-row">
-          <a href="#checkout" class="btn btn-primary">Join the Community Today For $57/mo</a>
+          <a href="#checkout" class="btn btn-primary">Start Your 7 Day Free Trial</a>
           <p class="guarantee">Monthly membership · Cancel anytime · Start within minutes of joining</p>
         </div>
       </div>
       <!-- GUARANTEE -->
       <div class="guarantee-box">
-        <div class="seal"><span class="big">7</span><span class="small">DAY<br>GUARANTEE</span></div>
+        <div class="seal"><span class="big">7</span><span class="small">DAY<br>FREE TRIAL</span></div>
         <div>
           <h3>Try it risk-free for 7 days</h3>
-          <p>Join, go through the roadmap, meet the community. If it isn't the clear, practical system I promised — and not "more of the same" — email me within 7 days and I'll refund every cent. No forms, no hard feelings. The only risk is staying exactly where you are.</p>
+          <p>Join today and try the full community free for 7 days — go through the roadmap, meet the community, see if it's the clear, practical system I promised. Not convinced? Cancel anytime before your trial ends and you won't be charged a cent. No forms, no hard feelings. The only risk is staying exactly where you are.</p>
         </div>
       </div>
     </div>
@@ -662,7 +665,7 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
       <p>What you can't build alone is the structure, the progression, and the real practice environment that make the language actually stick. Join below and get instant access.</p>
       <div class="checkout-box">
         <div class="co-price"><span class="co-now">$57</span><span class="co-per">/mo</span></div>
-        <p class="co-sub">Monthly membership · Cancel anytime · 7-day money-back guarantee</p>
+        <p class="co-sub">Monthly membership · Cancel anytime</p>
         <div id="paypal-button-container-P-3RA10924ET035924YNIRTWBA"></div>
       </div>
     </div>
