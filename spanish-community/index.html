@@ -311,22 +311,6 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
   .checkout-box .co-per{font-size:1.15rem;color:#5b6b6b;font-weight:700;margin-left:2px}
   .checkout-box .co-sub{color:#5b6b6b;font-size:.84rem;margin:8px 0 20px}
 
-  /* ---- VSL gate (unlock rest of page at 50% watched) ---- */
-  [hidden]{display:none !important}
-  .gate-hide{opacity:0}
-  .gate-hide.gate-reveal{
-    animation:gateFadeIn .7s ease forwards;
-  }
-  @keyframes gateFadeIn{
-    from{opacity:0;transform:translateY(10px)}
-    to{opacity:1;transform:translateY(0)}
-  }
-  .gate-lock{
-    max-width:560px;margin:22px auto 0;text-align:center;
-  }
-  .gate-progress{height:6px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
-  .gate-progress-fill{height:100%;width:0%;background:var(--turq);border-radius:999px;transition:width .25s linear}
-  body.unlocked .gate-lock{display:none}
 </style>
 </head>
 <body>
@@ -340,11 +324,7 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
       <div class="video-wrap" id="vsl">
         <div style="padding:56.25% 0 0 0;position:relative;"><iframe id="vsl-iframe" src="https://player.vimeo.com/video/1200553520?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="VSL COMPRIMIDO - PROGRES mp4"></iframe></div>
       </div>
-      <!-- Progress indicator shown until 35% watched -->
-      <div class="gate-lock" id="gateLock">
-        <div class="gate-progress"><div class="gate-progress-fill" id="gateProgressFill"></div></div>
-      </div>
-      <div class="gate-hide" hidden>
+      <div>
         <div class="hero-cta" style="margin-top:34px">
           <a href="#checkout" class="btn btn-primary">Start Your 7 Day Free Trial</a>
         </div>
@@ -353,8 +333,7 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
     </div>
   </header>
 
-  <!-- Everything below is gated until 50% of the VSL has been watched -->
-  <div class="gate-hide" hidden id="gated-content">
+  <div id="gated-content">
   <!-- TRUST STRIP -->
   <div class="trust">
     <div class="wrap trust-inner">
@@ -685,59 +664,6 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
   </footer>
   </div><!-- /#gated-content -->
 
-  <script src="https://player.vimeo.com/api/player.js"></script>
-  <!-- VSL gating logic: unlock the rest of the page once 50% of the video has been watched -->
-  <script>
-  (function(){
-    var body = document.body;
-
-    function unlock(){
-      if(body.classList.contains('unlocked')) return;
-      body.classList.add('unlocked');
-      document.querySelectorAll('.gate-hide').forEach(function(el){
-        el.hidden = false;
-        el.classList.add('gate-reveal');
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', function(){
-      var iframe = document.getElementById('vsl-iframe');
-      if(!iframe || typeof Vimeo === 'undefined'){
-        // fail-safe: never hard-lock the page if the Vimeo API doesn't load
-        unlock();
-        return;
-      }
-
-      var player = new Vimeo.Player(iframe);
-      var fill = document.getElementById('gateProgressFill');
-      var UNLOCK_THRESHOLD = 0.35;
-      var maxTimeReached = 0;
-      var restoringPosition = false;
-
-      player.on('timeupdate', function(data){
-        var seconds = data.seconds || 0;
-        if(seconds > maxTimeReached) maxTimeReached = seconds;
-        var pct = Math.max(0, Math.min(1, data.percent || 0));
-        if(fill) fill.style.width = (pct*100) + '%';
-        if(pct >= UNLOCK_THRESHOLD){ unlock(); }
-      });
-
-      // Block scrubbing/skipping ahead: snap back to the furthest point actually watched.
-      player.on('seeked', function(data){
-        if(restoringPosition) return;
-        var seconds = data.seconds || 0;
-        if(seconds > maxTimeReached + 0.75){
-          restoringPosition = true;
-          player.setCurrentTime(maxTimeReached).finally(function(){
-            restoringPosition = false;
-          });
-        }
-      });
-
-      player.on('error', function(){ unlock(); });
-    });
-  })();
-  </script>
   <!-- PayPal subscription checkout -->
   <script src="https://www.paypal.com/sdk/js?client-id=AdHQsrOHZwdWZGbLkT-GYUEc64Bwu0wsiDEJ8eiYzpZ27I4D3Ok8xFKI6uInYZT5YKF3LSt_D5ZE41fd&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
   <script>
