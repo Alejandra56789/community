@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '633455245862715');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProgresSpanish — Speak Real Spanish With Confidence</title>
+<style>
+  :root{
+    --bg:#0E4444;          /* deep teal */
+    --bg-2:#0B3838;        /* darker section */
+    --bg-3:#0A3030;        /* deepest */
+    --card:#13504F;        /* card teal */
+    --card-2:#174f4e;
+    --line:rgba(98,217,214,.18);
+    --turq:#62D9D6;        /* bright turquoise */
+    --turq-soft:#9fe9e7;
+    --coral:#E0A48C;       /* coral accent */
+    --coral-deep:#d8916f;
+    --red:#e07a6e;
+    --cream:#F3EFC9;       /* CTA cream */
+    --gold:#F2C572;        /* gold — reserved for the 7-day free trial */
+    --gold-deep:#D9A441;
+    --gold-ink:#2C1E04;    /* text on gold */
+    --gold-onwhite:#9A6F12;
+    --text:#EAF6F6;        /* off white */
+    --muted:#9FBFBE;       /* muted teal-grey */
+    --radius:18px;
+    --maxw:1080px;
+    font-synthesis:none;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Segoe UI',system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{line-height:1.15;letter-spacing:-.01em;font-weight:800}
+  h1{font-size:clamp(2rem,5.2vw,3.6rem)}
+  h2{font-size:clamp(1.6rem,3.6vw,2.5rem)}
+  h3{font-size:clamp(1.15rem,2.2vw,1.4rem)}
+  p{color:var(--text)}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .turq{color:var(--turq)}
+  .gold{color:var(--gold)}
+  .coral{color:var(--coral)}
+  .muted{color:var(--muted)}
+  section{padding:72px 0}
+  .eyebrow{
+    text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;font-weight:700;
+    color:var(--coral);margin-bottom:14px;display:inline-block
+  }
+  /* ---- buttons ---- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    font-weight:800;font-size:1.02rem;border:none;cursor:pointer;
+    padding:16px 30px;border-radius:999px;transition:transform .15s ease,box-shadow .15s ease,background .15s ease;
+    text-align:center
+  }
+  .btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:var(--gold-ink);box-shadow:0 10px 28px rgba(242,197,114,.22)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(242,197,114,.36)}
+  .btn-turq{background:var(--turq);color:#073231;box-shadow:0 10px 28px rgba(98,217,214,.22)}
+  .btn-turq:hover{transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:var(--turq);border:1.5px solid var(--turq)}
+  .btn-ghost:hover{background:rgba(98,217,214,.1)}
+  .btn-glow{box-shadow:0 0 0 1px rgba(242,197,114,.35),0 14px 44px rgba(242,197,114,.34)}
+  .btn-block{width:100%;max-width:420px}
+  /* ---- hero ---- */
+  .hero{padding:70px 0 56px;text-align:center;background:
+      radial-gradient(900px 420px at 50% -10%,rgba(98,217,214,.12),transparent 70%)}
+  .hero .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(98,217,214,.12);
+    border:1px solid var(--line);color:var(--turq);padding:7px 16px;border-radius:999px;font-size:.82rem;font-weight:700;margin-bottom:22px}
+  .hero h1{max-width:24ch;margin:0 auto 18px;font-size:clamp(1.9rem,4.6vw,3.15rem)}
+  .hero h1 .u{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px;white-space:nowrap}
+  .hero .sub{font-size:clamp(.92rem,1.4vw,1.05rem);color:var(--muted);max-width:58ch;margin:0 auto}
+  .hero .reassure{margin-top:22px;font-size:.86rem;color:var(--muted)}
+  /* ---- 7-day free trial ribbon (gold = the trial, everywhere) ---- */
+  .trial-ribbon{display:inline-flex;align-items:center;gap:10px;
+     background:linear-gradient(135deg,rgba(242,197,114,.16),rgba(217,164,65,.10));
+     border:1px solid rgba(242,197,114,.55);color:var(--gold);
+     font-weight:800;font-size:.92rem;letter-spacing:.02em;
+     padding:11px 22px;border-radius:999px;margin-top:34px}
+  .trial-ribbon .sep{color:rgba(242,197,114,.45);font-weight:400}
+  @media(max-width:520px){.trial-ribbon{font-size:.82rem;padding:10px 16px;gap:7px}}
+  /* ---- device mockup ---- */
+  .mockup{position:relative;max-width:760px;margin:46px auto 0}
+  .laptop{position:relative;border-radius:16px;background:#20302f;border:1px solid var(--line);
+     padding:13px 13px 0;box-shadow:0 40px 90px rgba(0,0,0,.5)}
+  .laptop .screen{aspect-ratio:16/10;border-radius:9px;overflow:hidden;position:relative;
+     background:linear-gradient(135deg,#15504f,#0c3a3a);display:flex;align-items:center;justify-content:center;font-size:3rem}
+  .hero .mockup{max-width:800px}
+  .hero .laptop .screen{aspect-ratio:16/10;background:#0c3a3a}
+  .hero .laptop .shot-img{object-position:top center}
+  /* brand banner inside the offer-section laptop */
+  .offer .laptop .screen{aspect-ratio:1084/576;background:#0c3a3a}
+  .laptop .base{height:13px;margin:0 -7%;border-radius:0 0 16px 16px;
+     background:linear-gradient(180deg,#2b3d3c,#16211f);border:1px solid var(--line);border-top:none}
+  .phone{position:absolute;left:2%;bottom:-22px;width:21%;min-width:112px;border-radius:24px;
+     background:#20302f;border:1px solid var(--line);padding:7px;box-shadow:0 26px 56px rgba(0,0,0,.55);z-index:3}
+  .phone .screen{aspect-ratio:9/19;border-radius:18px;overflow:hidden;position:relative;
+     background:linear-gradient(135deg,#15504f,#0c3a3a);display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+  .panel{position:absolute;right:0;bottom:6%;width:33%;min-width:170px;border-radius:14px;
+     background:var(--card);border:1px solid var(--line);padding:14px 16px;box-shadow:0 24px 50px rgba(0,0,0,.5);z-index:3;text-align:left}
+  .panel .t{font-size:.72rem;font-weight:800;color:var(--turq);text-transform:uppercase;letter-spacing:.1em}
+  .panel .r{display:flex;justify-content:space-between;font-size:.74rem;color:var(--muted);margin-top:8px}
+  .panel .bar{height:6px;border-radius:999px;background:rgba(98,217,214,.15);margin-top:6px;overflow:hidden}
+  .panel .bar i{display:block;height:100%;background:var(--turq);border-radius:999px}
+  @media(max-width:620px){.panel{display:none}.phone{bottom:-16px;left:-2%}}
+  .shot-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+  /* ---- trust strip ---- */
+  .trust{padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-2)}
+  .trust-inner{display:flex;align-items:center;justify-content:center;gap:46px;flex-wrap:wrap;text-align:center}
+  .stat .n{font-size:1.8rem;font-weight:800;color:var(--turq);line-height:1}
+  .stat .l{font-size:.82rem;color:var(--muted);margin-top:4px}
+  .stars{color:var(--coral);font-size:1.1rem;letter-spacing:2px}
+  /* ---- generic section header ---- */
+  .sec-head{text-align:center;max-width:64ch;margin:0 auto 44px}
+  .sec-head p{color:var(--muted);margin-top:14px;font-size:1.05rem}
+  /* ---- pain / gain cards ---- */
+  .cards{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+  .row-card{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;align-items:flex-start}
+  .row-card .ic{flex:0 0 auto;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.85rem;margin-top:2px}
+  .row-card.pain .ic{background:rgba(224,122,110,.18);color:var(--red)}
+  .row-card.gain .ic{background:rgba(98,217,214,.16);color:var(--turq)}
+  .row-card p{font-size:.98rem}
+  .row-card b{color:var(--text)}
+  /* ---- empathy band ---- */
+  .band{background:var(--bg-2)}
+  .band .quote{max-width:60ch;margin:0 auto;text-align:center;font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:700;line-height:1.35}
+  .band .quote span{color:var(--turq)}
+  .band .sign{text-align:center;color:var(--muted);margin-top:22px}
+  /* ---- comparison ---- */
+  .compare{display:grid;grid-template-columns:1.3fr 1fr 1fr;column-gap:14px;row-gap:0;background:transparent}
+  .compare .cell{padding:16px 18px;display:flex;align-items:center;font-size:.95rem;background:var(--card);border-bottom:1px solid var(--line)}
+  .compare .cell:nth-child(1),.compare .cell:nth-child(2),.compare .cell:nth-child(3){border-top-left-radius:16px;border-top-right-radius:16px}
+  .compare .cell:nth-last-child(1),.compare .cell:nth-last-child(2),.compare .cell:nth-last-child(3){border-bottom-left-radius:16px;border-bottom-right-radius:16px;border-bottom:none}
+  .compare .feature{color:var(--muted);font-weight:600}
+  .compare .colhead{font-weight:800;justify-content:center;text-align:center;flex-direction:column;gap:4px;background:var(--bg-2);font-size:1rem}
+  .compare .them{justify-content:center;color:var(--muted);background:rgba(198,86,74,.12);border-bottom-color:rgba(198,86,74,.25)}
+  .compare .colhead.them{background:rgba(198,86,74,.22);color:#f0b7ad}
+  .compare .us{background:rgba(98,217,214,.08);justify-content:center;font-weight:700;box-shadow:inset 0 0 0 1px rgba(98,217,214,.25);border-bottom-color:rgba(98,217,214,.2)}
+  .compare .colhead.us{background:rgba(98,217,214,.16);color:var(--turq)}
+  .yes{color:var(--turq);font-weight:900;font-size:1.15rem}
+  .no{color:var(--red);font-weight:900;font-size:1.15rem}
+  @media(max-width:760px){
+    .compare{grid-template-columns:1fr 1fr;column-gap:10px;row-gap:8px}
+    .compare .cell{border:none;border-radius:0;background:transparent;padding:0;display:block}
+    .compare .feature{grid-column:1 / -1;font-weight:800;color:var(--text);padding:18px 2px 2px;border-top:1px solid var(--line)}
+    .compare .them,.compare .us{flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:14px 10px;border-radius:12px}
+    .compare .them{background:rgba(198,86,74,.12);box-shadow:inset 0 0 0 1px rgba(198,86,74,.25)}
+    .compare .us{background:rgba(98,217,214,.08);box-shadow:inset 0 0 0 1px rgba(98,217,214,.25)}
+    .compare .them::before{content:"Apps & generic courses";display:block;color:var(--muted);font-weight:600;font-size:.7rem;text-transform:uppercase;letter-spacing:.03em;margin-bottom:8px}
+    .compare .us::before{content:"ProgresSpanish";display:block;color:var(--turq);font-weight:700;font-size:.7rem;text-transform:uppercase;letter-spacing:.03em;margin-bottom:8px}
+    .compare .colhead{display:none}
+  }
+  /* ---- method steps ---- */
+  .steps{position:relative;max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+  .step{display:flex;gap:20px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 26px}
+  .step .num{flex:0 0 auto;width:46px;height:46px;border-radius:12px;background:var(--turq);color:#073231;font-weight:900;font-size:1.2rem;display:flex;align-items:center;justify-content:center}
+  .step h3{margin-bottom:6px}
+  .step p{color:var(--muted);font-size:.98rem}
+  /* ---- four skills ---- */
+  .skills{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  @media(max-width:900px){.skills{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:480px){.skills{grid-template-columns:1fr}}
+  .skill{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+  .skill .em{font-size:1.6rem}
+  .skill h3{font-size:1.12rem;margin:12px 0 8px;color:var(--turq)}
+  .skill p{color:var(--muted);font-size:.92rem}
+  /* ---- OFFER BLOCK (mid page) ---- */
+  .offer{background:var(--bg-2);text-align:center}
+  .offer .eyebrow.gold{color:var(--gold)}
+  .offer .badge-scarcity{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(90deg,var(--coral),var(--coral-deep));
+     color:#3a1c11;font-weight:800;font-size:.86rem;padding:9px 20px;border-radius:999px;margin:30px 0 22px}
+  .price-block{margin:4px 0 22px}
+  .price-block .was{color:var(--muted);text-decoration:line-through;font-size:1.1rem}
+  .price-block .now{font-size:clamp(2.6rem,7vw,3.6rem);font-weight:900;color:var(--turq);line-height:1;margin:6px 0}
+  .price-block .now .per{font-size:1.3rem;font-weight:700;color:var(--muted)}
+  .price-block .save{display:inline-block;background:rgba(98,217,214,.14);border:1px solid var(--line);color:var(--turq);font-weight:700;font-size:.82rem;padding:6px 14px;border-radius:999px}
+  .countdown-box{max-width:560px;margin:0 auto 20px;background:rgba(224,164,140,.10);border:1px solid rgba(224,164,140,.45);
+     border-radius:16px;padding:22px 24px}
+  .countdown-box .ttl{font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.9rem;color:var(--coral)}
+  .countdown-box .exp{color:var(--muted);font-size:.86rem;margin-top:6px}
+  .countdown{font-size:clamp(2rem,6vw,2.6rem);font-weight:900;color:var(--coral);line-height:1.1;margin-top:12px;font-variant-numeric:tabular-nums}
+  .countdown-lbl{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+  .spots{display:inline-flex;align-items:center;gap:9px;color:var(--coral);font-weight:700;font-size:.94rem;margin-bottom:18px}
+  .pulse{width:9px;height:9px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 0 rgba(224,164,140,.6);animation:pulse 1.8s infinite;flex:0 0 auto}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(224,164,140,.55)}70%{box-shadow:0 0 0 10px rgba(224,164,140,0)}100%{box-shadow:0 0 0 0 rgba(224,164,140,0)}}
+  .micro{color:var(--muted);font-size:.85rem;margin-top:12px}
+  .micro b{color:var(--gold)}
+  .guarantee-link{display:inline-flex;align-items:center;justify-content:center;gap:10px;max-width:420px;width:100%;
+     margin:18px auto 0;border:1px solid rgba(242,197,114,.5);background:rgba(242,197,114,.08);border-radius:999px;padding:14px 22px;
+     font-weight:800;font-size:.9rem;letter-spacing:.04em;text-transform:uppercase;color:var(--gold)}
+  .guarantee-link:hover{background:rgba(242,197,114,.14)}
+  /* ---- value stack ---- */
+  .stack{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  @media(max-width:820px){.stack{grid-template-columns:1fr}}
+  .sc{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;text-align:center}
+  .sc .shot{aspect-ratio:16/10;position:relative;display:flex;align-items:center;justify-content:center;font-size:2.4rem;
+     background:linear-gradient(135deg,#15504f,#0c3a3a);border-bottom:1px solid var(--line)}
+  .sc .shot::after{content:"";position:absolute;inset:0;background:radial-gradient(260px 140px at 50% 30%,rgba(98,217,214,.16),transparent 70%)}
+  .sc .shot .tag{position:absolute;z-index:3;bottom:10px;left:10px;background:rgba(10,48,48,.82);color:var(--turq);font-size:.7rem;font-weight:700;padding:4px 9px;border-radius:6px;border:1px solid var(--line)}
+  .sc .b{padding:22px 22px 24px}
+  .sc h3{font-size:1.12rem}
+  .sc p{color:var(--muted);font-size:.9rem;margin:8px 0 14px}
+  .sc .was{color:var(--muted);text-decoration:line-through;font-size:.95rem;display:block}
+  .sc .free{color:var(--turq);font-weight:900;font-size:1.02rem;letter-spacing:.02em;display:block;margin-top:2px}
+  .sc.bonus{grid-column:1 / -1;border-color:var(--coral)}
+  .sc.bonus .shot{aspect-ratio:21/9;background:linear-gradient(135deg,#2a3f3e,#123f3e)}
+  .sc.bonus h3{color:var(--coral)}
+  .sc.bonus .free{color:var(--coral)}
+  .total-box{max-width:620px;margin:26px auto 0;border:1px solid var(--turq);background:rgba(98,217,214,.07);
+     border-radius:18px;padding:24px;text-align:center}
+  .total-box .l{color:var(--muted);font-size:.9rem}
+  .total-box .v{font-size:1.9rem;font-weight:900;color:var(--muted);text-decoration:line-through;margin:4px 0 6px}
+  .total-box .inc{color:var(--turq);font-weight:800}
+  .total-box .inc b{color:var(--gold)}
+  /* ---- extras ---- */
+  .extras{max-width:700px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+  @media(max-width:640px){.extras{grid-template-columns:1fr}}
+  .extras li{list-style:none;display:flex;gap:10px;align-items:flex-start;font-size:.94rem;color:var(--text)}
+  .extras li .m{color:var(--turq);font-weight:900;flex:0 0 auto}
+  /* ---- testimonials ---- */
+  .tcards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:880px){.tcards{grid-template-columns:1fr}}
+  .tcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:14px}
+  .tcard .head{display:flex;align-items:center;gap:12px}
+  .tcard .av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--turq));flex:0 0 auto;object-fit:cover}
+  .tcard .name{font-weight:800}
+  .tcard .role{font-size:.82rem;color:var(--turq)}
+  .tcard p{font-size:.95rem;color:var(--text)}
+  .tcard .stars{font-size:1rem}
+  .verified{font-size:.74rem;color:var(--turq);font-weight:700;margin-left:auto}
+  .tcard .stars-row{display:flex;align-items:center}
+  .vtest-head{text-align:center;margin:56px 0 26px}
+  .vtest-head h3{font-size:1.35rem}
+  .vtest{display:flex;flex-direction:column;align-items:center;gap:26px}
+  .vtest-item{border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 20px 50px rgba(0,0,0,.32);background:#000;width:100%;margin:0 auto}
+  .vtest-item.portrait{max-width:330px}
+  .vtest-item.land{max-width:560px}
+  /* ---- story timeline ---- */
+  .tl{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:34px}
+  .tl-item{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+  .tl-item.rev .tl-txt{order:2}
+  .tl-item.rev .tl-img{order:1}
+  @media(max-width:760px){.tl-item,.tl-item.rev{grid-template-columns:1fr}.tl-item.rev .tl-txt,.tl-item.rev .tl-img{order:initial}}
+  .tl-img{aspect-ratio:4/3;border-radius:16px;overflow:hidden;position:relative;border:1px solid var(--line);
+     background:radial-gradient(circle at 35% 30%,rgba(98,217,214,.34),transparent 62%),linear-gradient(135deg,#15504f,#0c3a3a);
+     display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.85rem}
+  .tl-date{color:var(--coral);font-weight:800;font-size:.8rem;text-transform:uppercase;letter-spacing:.12em}
+  .tl-txt h3{margin:8px 0 10px}
+  .tl-txt p{color:var(--muted);font-size:.97rem}
+  .tl-txt b{color:var(--text)}
+  /* ---- two paths ---- */
+  .paths{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:760px){.paths{grid-template-columns:1fr}}
+  .path{border-radius:18px;padding:30px;border:1px solid var(--line)}
+  .path.a{background:var(--bg-3)}
+  .path.b{background:linear-gradient(135deg,rgba(98,217,214,.12),rgba(224,164,140,.08));border-color:var(--turq)}
+  .path h3{margin-bottom:12px}
+  .path.a h3{color:var(--coral)}
+  .path.b h3{color:var(--turq)}
+  .path p{color:var(--muted);font-size:.97rem}
+  /* ---- qualification ---- */
+  .quals{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:760px){.quals{grid-template-columns:1fr}}
+  .qual{border-radius:18px;padding:28px;border:1px solid var(--line)}
+  .qual.yes-box{background:rgba(98,217,214,.07);border-color:var(--turq)}
+  .qual.no-box{background:var(--bg-3)}
+  .qual h3{margin-bottom:16px;font-size:1.2rem}
+  .qual.yes-box h3{color:var(--turq)}
+  .qual.no-box h3{color:var(--coral)}
+  .qual ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .qual li{display:flex;gap:12px;font-size:.95rem;color:var(--text)}
+  .qual .m{flex:0 0 auto;font-weight:900}
+  .qual.yes-box .m{color:var(--turq)}
+  .qual.no-box .m{color:var(--coral-deep)}
+  .qual.no-box li{color:var(--muted)}
+  /* ---- guarantee ---- */
+  .guarantee-box{max-width:720px;margin:0 auto;display:flex;gap:22px;align-items:center;
+     background:linear-gradient(135deg,rgba(242,197,114,.10),var(--card) 60%);border:1px solid var(--gold);
+     border-radius:20px;padding:28px 30px;text-align:left;box-shadow:0 24px 60px rgba(0,0,0,.32)}
+  @media(max-width:620px){.guarantee-box{flex-direction:column;text-align:center}}
+  .guarantee-box .seal{flex:0 0 auto;width:92px;height:92px;border-radius:50%;
+     background:radial-gradient(circle at 35% 30%,#fbe0ae,var(--gold-deep));color:var(--gold-ink);
+     box-shadow:0 0 0 6px rgba(242,197,114,.12);display:flex;flex-direction:column;
+     align-items:center;justify-content:center;font-weight:900;line-height:1;text-align:center}
+  .guarantee-box .seal .big{font-size:1.6rem}
+  .guarantee-box .seal .small{font-size:.6rem;letter-spacing:.04em;margin-top:3px}
+  .guarantee-box h3{color:var(--gold);margin-bottom:6px}
+  .guarantee-box p{color:var(--muted);font-size:.95rem}
+  /* ---- recap ---- */
+  .recap{text-align:center;background:radial-gradient(700px 340px at 50% 0%,rgba(98,217,214,.12),transparent 70%)}
+  .recap .logo{display:inline-flex;align-items:center;gap:10px;font-weight:900;font-size:1.3rem;margin-bottom:16px}
+  .recap .logo .dot{width:30px;height:30px;border-radius:9px;background:radial-gradient(circle at 30% 30%,var(--turq),#2b8c8a)}
+  .recap h2{max-width:20ch;margin:0 auto 12px}
+  .recap .lead{color:var(--muted);margin-bottom:30px}
+  .recap .extras{margin-bottom:32px;text-align:left}
+  /* ---- FAQ ---- */
+  .faq{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+  details{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  summary{cursor:pointer;list-style:none;padding:20px 22px;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  summary::-webkit-details-marker{display:none}
+  summary .plus{color:var(--turq);font-size:1.4rem;transition:transform .2s;flex:0 0 auto}
+  details[open] summary .plus{transform:rotate(45deg)}
+  details .body{padding:0 22px 22px;color:var(--muted)}
+  /* ---- final cta ---- */
+  .final{text-align:center;background:radial-gradient(700px 320px at 50% 0%,rgba(98,217,214,.12),transparent 70%)}
+  .final h2{max-width:18ch;margin:0 auto 18px}
+  .final p{color:var(--muted);max-width:54ch;margin:0 auto 30px}
+  .checkout-box{max-width:440px;margin:30px auto 0;background:#fff;border-radius:18px;padding:26px 26px 12px;box-shadow:0 26px 60px rgba(0,0,0,.42)}
+  .checkout-box .co-price{color:#0A3030;font-weight:900;font-size:2.6rem;line-height:1}
+  .checkout-box .co-per{font-size:1.15rem;color:#5b6b6b;font-weight:700;margin-left:2px}
+  .checkout-box .co-sub{color:#5b6b6b;font-size:.84rem;margin:8px 0 20px}
+  .checkout-box .co-sub b{color:var(--gold-onwhite)}
+  .checkout-box .co-trial{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+     color:var(--gold-ink);font-weight:800;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;
+     padding:6px 14px;border-radius:999px;margin-bottom:12px}
+  /* ---- footer ---- */
+  footer{background:var(--bg-3);border-top:1px solid var(--line);padding:40px 0;text-align:center;color:var(--muted);font-size:.85rem}
+  footer .flinks{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:14px 0}
+  footer a:hover{color:var(--turq)}
+  .center{text-align:center}
+  .mt{margin-top:30px}
+  .ph-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+</style>
+</head>
+<body>
+
+  <!-- ============ 1. HERO — promise + product visual. No nav, no CTA. ============ -->
+  <header class="hero">
+    <div class="wrap">
+      <span class="pill">Do you freeze up every time someone speaks Spanish to you?</span>
+      <h1>Start Speaking Real Spanish in <span class="turq">Less Than an Hour a Day</span> — With a <span class="u">4-Step System</span> Built for Busy Adults</h1>
+      <p class="sub">For adults who want to get better at their Spanish on their own — go from understanding one word in four to being a real part of the conversation, without living abroad and without endless grammar tables.</p>
+
+      <!-- Multi-device mockup. Swap the images for real screenshots of your platform. -->
+      <div class="mockup">
+        <div class="laptop">
+          <div class="screen">
+            <img class="shot-img" src="hero-laptop.png" alt="Inside the ProgresSpanish platform — the module roadmap" onerror="this.remove()">🗺️
+          </div>
+          <div class="base"></div>
+        </div>
+        <div class="phone">
+          <div class="screen">
+            <img class="shot-img" src="inside-community.png" alt="Private practice community" onerror="this.remove()">💬
+          </div>
+        </div>
+      </div>
+
+      <div class="trial-ribbon">✦ Try it free for 7 days <span class="sep">·</span> Cancel anytime <span class="sep">·</span> No card charged today</div>
+      <p class="reassure">No living abroad required · No endless grammar tables · Real practice from day one</p>
+    </div>
+  </header>
+
+  <!-- ============ TRUST STRIP ============ -->
+  <div class="trust">
+    <div class="wrap trust-inner">
+      <div class="stat"><div class="n">4+ yrs</div><div class="l">teaching &amp; refining the method</div></div>
+      <div class="stat"><div class="stars">★★★★★</div><div class="l">from real adult learners</div></div>
+      <div class="stat"><div class="n">4</div><div class="l">skills trained together, not in isolation</div></div>
+    </div>
+  </div>
+
+  <!-- ============ 2. PAIN — "this is for you if…" ============ -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Does this sound like you?</span>
+        <h2>This is for you if…</h2>
+      </div>
+      <div class="cards">
+        <div class="row-card pain"><span class="ic">✕</span><p>Your partner, friends or in-laws speak Spanish, and you <b>smile and nod</b> even when you're not catching it all.</p></div>
+        <div class="row-card pain"><span class="ic">✕</span><p>You studied Spanish in school — maybe even got good grades — but today you <b>can't keep up with a real conversation</b>.</p></div>
+        <div class="row-card pain"><span class="ic">✕</span><p>You tried the apps, hit a 30-day streak, and then realized you <b>still couldn't understand anyone speaking at normal speed</b>.</p></div>
+        <div class="row-card pain"><span class="ic">✕</span><p>When someone speaks to you in Spanish, <b>your mind goes blank</b> — even when you feel like you know the words.</p></div>
+        <div class="row-card pain"><span class="ic">✕</span><p>You want to travel and get around on your own — order, ask, connect — <b>without depending on a translator</b>.</p></div>
+        <div class="row-card pain"><span class="ic">✕</span><p><em>Ser</em> vs. <em>estar</em>, the subjunctive, conjugations — <b>too many rules and no idea what to learn first</b>.</p></div>
+      </div>
+      <p class="center mt muted">Deep down you may believe "you have to be young to learn a language" or "it's already too late for me." If any of this feels familiar, keep reading — this was built for you.</p>
+    </div>
+  </section>
+
+  <!-- ============ 3. DESIRE — the mirror of the pain ============ -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Your new reality</span>
+        <h2>What you're going to be able to do</h2>
+      </div>
+      <div class="cards">
+        <div class="row-card gain"><span class="ic">✓</span><p>You'll <b>follow the conversation at the table and answer back</b> — in Spanish, not with a smile and a nod.</p></div>
+        <div class="row-card gain"><span class="ic">✓</span><p>The Spanish you already studied finally turns into something you can <b>actually use out loud</b>.</p></div>
+        <div class="row-card gain"><span class="ic">✓</span><p>You'll <b>understand real people at normal speed</b> — not slowed-down app audio recorded in a studio.</p></div>
+        <div class="row-card gain"><span class="ic">✓</span><p>The words will come out <b>without rehearsing the sentence in your head first</b>.</p></div>
+        <div class="row-card gain"><span class="ic">✓</span><p>You'll travel and <b>handle it on your own</b> — order, ask directions, connect with the place, translator-free.</p></div>
+        <div class="row-card gain"><span class="ic">✓</span><p>You'll always know <b>exactly what to learn next</b>: only the grammar you'll truly use, in the right order.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EMPATHY BAND ============ -->
+  <section>
+    <div class="wrap">
+      <p class="quote">The worst part isn't not knowing Spanish. It's feeling like you're missing something that truly matters — a real connection, a moment you can't get back. <span>The problem isn't your ability. It's the method.</span></p>
+      <p class="sign">— Most methods were designed for students, not for adults who need to speak in real situations that matter.</p>
+    </div>
+  </section>
+
+  <!-- ============ WHY NOTHING HAS WORKED — comparison ============ -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Why nothing has worked yet</span>
+        <h2>Apps &amp; generic courses vs. <span class="turq">the ProgresSpanish community</span></h2>
+      </div>
+      <div class="compare">
+        <div class="cell colhead">&nbsp;</div>
+        <div class="cell colhead them">Apps &amp; generic courses</div>
+        <div class="cell colhead us">ProgresSpanish</div>
+        <div class="cell feature">A clear step-by-step path</div>
+        <div class="cell them"><span class="no">✕</span></div>
+        <div class="cell us"><span class="yes">✓</span></div>
+        <div class="cell feature">Real practice (not just exercises)</div>
+        <div class="cell them"><span class="no">✕</span></div>
+        <div class="cell us"><span class="yes">✓</span></div>
+        <div class="cell feature">Built around your real life &amp; situations</div>
+        <div class="cell them"><span class="no">✕</span></div>
+        <div class="cell us"><span class="yes">✓</span></div>
+        <div class="cell feature">Only the essential grammar, in the right order</div>
+        <div class="cell them"><span class="no">✕</span></div>
+        <div class="cell us"><span class="yes">✓</span></div>
+        <div class="cell feature">A community practicing alongside you</div>
+        <div class="cell them"><span class="no">✕</span></div>
+        <div class="cell us"><span class="yes">✓</span></div>
+        <div class="cell feature">Designed for busy adults, not classrooms</div>
+        <div class="cell them"><span class="no">✕</span></div>
+        <div class="cell us"><span class="yes">✓</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE MECHANISM — 4 steps ============ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">The mechanism</span>
+        <h2>The Structured Immersion System for <span class="turq">English-Speaking Adults</span></h2>
+        <p>Not magic. Not a shortcut. The four things your brain genuinely needs to acquire a language — in the right order, with the right material, and a daily routine that fits a real adult life.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><span class="num">1</span><div><h3>Foundations</h3><p>Pronunciation and core structures so you can start communicating from day one. You don't wait until you "know enough" — you use it immediately.</p></div></div>
+        <div class="step"><span class="num">2</span><div><h3>Structure</h3><p>The verbs and tenses you'll actually use, in context — present (your life &amp; routines), past (your stories), and future (your plans). Not everything. The right things, in the right order.</p></div></div>
+        <div class="step"><span class="num">3</span><div><h3>Immersion</h3><p>Reading, listening, writing and speaking with material relevant to your real life — not generic textbook content. Guided practice in the exact situations you need to master, with feedback, in a safe space before you do it for real.</p></div></div>
+        <div class="step"><span class="num">4</span><div><h3>Sustainable routine</h3><p>A daily practice system that fits your life as it really is, not as you wish it were. Because consistency beats intensity, every time.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOUR SKILLS ============ -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">How the brain really learns</span>
+        <h2>Four skills working <span class="turq">together</span>, never in isolation</h2>
+      </div>
+      <div class="skills">
+        <div class="skill"><div class="em">👂</div><h3>Active listening</h3><p>Exposure to real Spanish with guided comprehension — training your ear on the language as it's actually spoken, without dumbing it down.</p></div>
+        <div class="skill"><div class="em">📖</div><h3>Reading in context</h3><p>Spanish matched to your level that grows with you, so the input always pushes you a little further without overwhelming you.</p></div>
+        <div class="skill"><div class="em">✍️</div><h3>Productive writing</h3><p>You express yourself in writing from day one. Not perfectly — just honestly. Getting thoughts out builds the confidence to say them out loud.</p></div>
+        <div class="skill"><div class="em">🗣️</div><h3>Real speaking</h3><p>You practice the specific situations you'll actually face. Not scripted dialogues — real conversations built around your real life.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. THE OFFER — price + urgency, mid-page ============ -->
+  <section id="offer" class="offer">
+    <div class="wrap">
+      <span class="eyebrow gold">✦ 7-day free trial · cancel anytime</span>
+      <h2>ProgresSpanish: The Community for Adults Who <span class="turq">Actually Want to Speak</span></h2>
+
+      <div class="mockup" style="max-width:640px">
+        <div class="laptop">
+          <div class="screen">
+            <img class="shot-img" src="brand-banner.png" alt="ProgresSpanish — a community that helps English-speaking adults have real conversations in Spanish" onerror="this.remove()">📚
+          </div>
+          <div class="base"></div>
+        </div>
+      </div>
+
+      <!-- Founding-member framing. Update the number + deadline below to the real ones. -->
+      <div class="badge-scarcity">🔥 Founding-member rate · first cohort only</div>
+
+      <div class="price-block">
+        <div class="was">$97/mo</div>
+        <div class="now">$57<span class="per">/mo</span></div>
+        <span class="save">Locked in for as long as you stay a member</span>
+      </div>
+
+      <div class="countdown-box">
+        <div class="ttl">Founding-member price ends in</div>
+        <p class="exp">Once the first cohort fills, the price goes to $97/mo. Everyone who joins before then keeps $57 for life.</p>
+        <div class="countdown" id="countdown">--d --h --m --s</div>
+        <div class="countdown-lbl">Days · Hours · Minutes · Seconds</div>
+      </div>
+
+      <div class="spots"><span class="pulse"></span> <span id="spots-left">Limited founding-member spots remaining</span></div>
+
+      <div>
+        <a href="#checkout" class="btn btn-primary btn-glow btn-block">Start Your 7-Day Free Trial</a>
+        <p class="micro"><b>Free for your first 7 days</b> · Cancel anytime · Start within minutes of joining</p>
+        <a href="#guarantee" class="guarantee-link">✦ My 7-day risk-free promise ✦</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. VALUE STACK — piece by piece ============ -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Inside ProgresSpanish</span>
+        <h2>Everything you get access to <span class="turq">today</span></h2>
+      </div>
+      <div class="stack">
+
+        <div class="sc">
+          <div class="shot"><img class="ph-img" src="hero-laptop.png" alt="4-step roadmap" style="object-position:top center" onerror="this.remove()">🗺️<span class="tag">4-step roadmap</span></div>
+          <div class="b">
+            <h3>The step-by-step program</h3>
+            <p>Your clear path from foundations to real conversation — released progressively so you're never overwhelmed.</p>
+            <span class="was">$197</span><span class="free">INCLUDED TODAY 🔥</span>
+          </div>
+        </div>
+
+        <div class="sc">
+          <div class="shot">🧰<span class="tag">Implementation kit</span></div>
+          <div class="b">
+            <h3>Practical implementation materials</h3>
+            <p>The scripts, prompts and exercises you use in real situations — not theory you'll never open again.</p>
+            <span class="was">$97</span><span class="free">INCLUDED TODAY 🔥</span>
+          </div>
+        </div>
+
+        <div class="sc">
+          <div class="shot"><img class="ph-img" src="inside-library.png" alt="Immersion library" onerror="this.remove()">📚<span class="tag">Immersion library</span></div>
+          <div class="b">
+            <h3>A curated immersion library</h3>
+            <p>Articles, blogs and videos organized by topic and real-life situation, matched to your level.</p>
+            <span class="was">$67</span><span class="free">INCLUDED TODAY 🔥</span>
+          </div>
+        </div>
+
+        <div class="sc">
+          <div class="shot"><img class="ph-img" src="inside-community.png" alt="Private community" onerror="this.remove()">💬<span class="tag">Private community</span></div>
+          <div class="b">
+            <h3>People practicing with you</h3>
+            <p>English-speaking adults going through the exact same process, every single day.</p>
+            <span class="was">$147</span><span class="free">INCLUDED TODAY 🔥</span>
+          </div>
+        </div>
+
+        <div class="sc">
+          <div class="shot"><img class="ph-img" src="inside-weekly.jpg" alt="Weekly live session" onerror="this.remove()">🎥<span class="tag">Live every week</span></div>
+          <div class="b">
+            <h3>Weekly group session</h3>
+            <p>Live Q&amp;A with Alejandra plus real culture and situation topics — practice with a person, not a screen.</p>
+            <span class="was">$197</span><span class="free">INCLUDED TODAY 🔥</span>
+          </div>
+        </div>
+
+        <div class="sc">
+          <div class="shot">🤝<span class="tag">Guidance</span></div>
+          <div class="b">
+            <h3>Ongoing support &amp; guidance</h3>
+            <p>You're never left figuring out what to do next on your own.</p>
+            <span class="was">$97</span><span class="free">INCLUDED TODAY 🔥</span>
+          </div>
+        </div>
+
+        <!-- BONUS — pattern break, like the Huella "super bonus" -->
+        <div class="sc bonus">
+          <div class="shot"><img class="ph-img" src="bonus-alejandra.jpg" alt="Personal starting-point plan" onerror="this.remove()">✦<span class="tag">Bonus</span></div>
+          <div class="b">
+            <h3>BONUS: Your personal starting-point plan</h3>
+            <p>Tell us where you are and why you need Spanish, and you get a mapped first 30 days — exactly what to do, in what order, from day one. No guessing where to start.</p>
+            <span class="was">$97</span><span class="free">INCLUDED TODAY 🔥</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="total-box">
+        <div class="l">Total real value of everything above</div>
+        <div class="v">$899</div>
+        <div class="inc">All of it included for $57/mo — <b>free for your first 7 days</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXTRAS ============ -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head" style="margin-bottom:30px">
+        <span class="eyebrow">Also included</span>
+      </div>
+      <ul class="extras">
+        <li><span class="m">✓</span> Immediate access the moment you join</li>
+        <li><span class="m">✓</span> Progressive release, so you're never overwhelmed</li>
+        <li><span class="m">✓</span> Works on any device with a browser</li>
+        <li><span class="m">✓</span> Material organized by real-life situation</li>
+        <li><span class="m">✓</span> Only the essential grammar, in the right order</li>
+        <li><span class="m">✓</span> Guided practice with feedback</li>
+        <li><span class="m">✓</span> A safe space to practice before you do it for real</li>
+        <li><span class="m">✓</span> Cancel anytime, no forms and no hard feelings</li>
+        <li style="color:var(--gold)"><span class="m" style="color:var(--gold)">✦</span> <b>Your first 7 days are free — nothing is charged until the trial ends</b></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 6. SOCIAL PROOF ============ -->
+  <section id="stories">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Verified students</span>
+        <h2>From "one word in four" to <span class="turq">part of the conversation</span></h2>
+      </div>
+      <div class="tcards">
+        <div class="tcard">
+          <div class="stars-row"><span class="stars">★★★★★</span><span class="verified">✓ Verified</span></div>
+          <p>"After two full years of streaks, points and levels on apps, I still couldn't hold a basic conversation. We built practice around the situations where I actually needed Spanish — and in weeks, the progress that hadn't happened in two years started happening fast."</p>
+          <div class="head"><img class="av" src="testimonial-amadeus.jpg" alt="Amadeus" onerror="this.outerHTML='&lt;span class=\'av\'&gt;&lt;/span&gt;'"><div><div class="name">Amadeus</div><div class="role">2 years stuck on apps → speaking</div></div></div>
+        </div>
+        <div class="tcard">
+          <div class="stars-row"><span class="stars">★★★★★</span><span class="verified">✓ Verified</span></div>
+          <p>"I have been learning with Alejandra, and she has been amazing every step of the way. Since starting my journey, she has improved my vocabulary and conversational skills in Spanish so much. She is very patient and keeps me engaged with various games and activities. I am very thankful to have her as my Spanish tutor."</p>
+          <div class="head"><img class="av" src="testimonial-matt.jpg" alt="Matt" onerror="this.outerHTML='&lt;span class=\'av\'&gt;&lt;/span&gt;'"><div><div class="name">Matt</div><div class="role">Vocabulary &amp; conversation, leveled up</div></div></div>
+        </div>
+        <div class="tcard">
+          <div class="stars-row"><span class="stars">★★★★★</span><span class="verified">✓ Verified</span></div>
+          <p>"I'm really enjoying my sessions with Alejandra. She's very patient with me haha, and fully engaged and very professional. I've only done a few sessions so far but I'm already seeing good progress. Would highly recommend."</p>
+          <div class="head"><img class="av" src="testimonial-mark.jpg" alt="Mark" onerror="this.outerHTML='&lt;span class=\'av\'&gt;&lt;/span&gt;'"><div><div class="name">Mark</div><div class="role">Already seeing progress in a few sessions</div></div></div>
+        </div>
+      </div>
+
+      <div class="vtest-head">
+        <h3>Hear it <span class="turq">in their own words</span></h3>
+      </div>
+      <div class="vtest">
+        <div class="vtest-item land">
+          <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1200886946?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Student testimonial 1"></iframe></div>
+        </div>
+        <div class="vtest-item portrait">
+          <div style="padding:178.77% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1200886945?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Student testimonial 2"></iframe></div>
+        </div>
+        <div class="vtest-item portrait">
+          <div style="padding:176.67% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1200886941?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Student testimonial 3"></iframe></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. STORY / AUTHORITY — after the sale, not before ============ -->
+  <!-- Swap the .tl-date labels for real years, like the reference landing does. -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">My story</span>
+        <h2>I watched smart adults give up on Spanish <span class="coral">for the wrong reason</span></h2>
+      </div>
+      <div class="tl">
+
+        <div class="tl-item">
+          <div class="tl-img"><img class="ph-img" src="alejandra.webp" alt="Alejandra" onerror="this.remove()">Alejandra</div>
+          <div class="tl-txt">
+            <span class="tl-date">The beginning</span>
+            <h3>Everyone blamed themselves — and they were all wrong</h3>
+            <p>After years of teaching, I kept meeting the same person: a capable adult convinced they "had no talent for languages." They had studied. They had paid for apps and courses. <b>The problem was never the student. It was the method they'd been handed.</b></p>
+          </div>
+        </div>
+
+        <div class="tl-item rev">
+          <div class="tl-txt">
+            <span class="tl-date">The realization</span>
+            <h3>A language isn't like any other subject</h3>
+            <p>There's context, culture and emotion woven through the entire process. You can't memorize your way in. <b>You have to <em>learn</em> and <em>acquire</em> at the same time</b> — take in what's essential and then actually use it with real people, in real situations.</p>
+          </div>
+          <div class="tl-img"><img class="ph-img" src="story-2.jpg" alt="Teaching" onerror="this.remove()">Add photo: story-2.jpg</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-img"><img class="ph-img" src="story-3.jpg" alt="The method" onerror="this.remove()">Add photo: story-3.jpg</div>
+          <div class="tl-txt">
+            <span class="tl-date">The method</span>
+            <h3>Four steps, four skills, one routine that survives real life</h3>
+            <p>I stopped teaching the way I'd been taught and rebuilt it around adults with jobs, families and 30 free minutes a day. Foundations, structure, immersion and a sustainable routine — <b>with reading, listening, writing and speaking always trained together</b>, never in isolation.</p>
+          </div>
+        </div>
+
+        <div class="tl-item rev">
+          <div class="tl-txt">
+            <span class="tl-date">Today</span>
+            <h3>That's how ProgresSpanish was born</h3>
+            <p>I'm not an app and I'm not a 200-video course where you conjugate verbs and never speak. <b>I'm not the "fluent in 30 days" type either</b> — I won't sell you that. What I built is a specific system for English-speaking adults who want to speak real Spanish with their partners, their in-laws, their friends and on their travels.</p>
+          </div>
+          <div class="tl-img"><img class="ph-img" src="story-4.jpg" alt="The community" onerror="this.remove()">Add photo: story-4.jpg</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUALIFICATION ============ -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Let's be honest</span>
+        <h2>Is this <span class="turq">for you</span>?</h2>
+        <p>I'd rather you skip this than join expecting the wrong thing. So here's the honest line.</p>
+      </div>
+      <div class="quals">
+        <div class="qual yes-box">
+          <h3>This is for you if…</h3>
+          <ul>
+            <li><span class="m">✓</span> You have a partner, family or friends who speak Spanish and you want to genuinely connect — not just trade phrases.</li>
+            <li><span class="m">✓</span> You studied Spanish before and feel like you wasted the time, because you still can't really speak.</li>
+            <li><span class="m">✓</span> Apps kept you busy but never got you to a real conversation with a real person.</li>
+            <li><span class="m">✓</span> You're a busy adult who needs something efficient, structured and built for the life you actually have.</li>
+            <li><span class="m">✓</span> You're planning to travel and want to move independently — connect with the place, not depend on a translator.</li>
+          </ul>
+        </div>
+        <div class="qual no-box">
+          <h3>This is NOT for you if…</h3>
+          <ul>
+            <li><span class="m">✕</span> You want to be "fluent in 30 days" with no real practice. I won't sell you that lie.</li>
+            <li><span class="m">✕</span> You're looking for 200 videos of grammar to conjugate verbs but never actually speak.</li>
+            <li><span class="m">✕</span> You believe an app alone will make the language magically appear.</li>
+            <li><span class="m">✕</span> You're not willing to give it 30–45 minutes a day. Consistency is the one thing I can't do for you.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TWO PATHS ============ -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Why now</span>
+        <h2>You have two paths in front of you</h2>
+      </div>
+      <div class="paths">
+        <div class="path a">
+          <h3>Path one — familiar</h3>
+          <p>You close this page. Maybe you tell yourself you'll come back. Maybe you download another app, start another streak, buy another course. And six months from now you're in the exact same place — smiling without understanding at family dinners, depending on someone else to translate when you travel, still waiting for Spanish to finally click.</p>
+        </div>
+        <div class="path b">
+          <h3>Path two — starts with a click</h3>
+          <p>You join the community today. You get your roadmap. You start the system. And week by week, you become someone who is genuinely part of the Spanish-speaking world that matters to you. The structure, the progression and the real practice environment — that's exactly what the community gives you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GUARANTEE ============ -->
+  <section id="guarantee">
+    <div class="wrap">
+      <div class="guarantee-box">
+        <div class="seal"><span class="big">7</span><span class="small">DAY<br>FREE TRIAL</span></div>
+        <div>
+          <h3>Try it risk-free for 7 days</h3>
+          <p>Join today and try the full community free for 7 days — go through the roadmap, meet the community, see if it's the clear, practical system I promised. Not convinced? Cancel anytime before your trial ends and you won't be charged a cent. No forms, no hard feelings. The only risk is staying exactly where you are.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. RECAP + CTA ============ -->
+  <section class="recap band">
+    <div class="wrap">
+      <div class="logo"><span class="dot"></span> ProgresSpanish</div>
+      <h2>It's your turn to be part of the conversation</h2>
+      <p class="lead">The best moment to start is always today.</p>
+      <ul class="extras">
+        <li><span class="m">✓</span> The 4-step Structured Immersion program</li>
+        <li><span class="m">✓</span> Practical implementation materials</li>
+        <li><span class="m">✓</span> Curated immersion library</li>
+        <li><span class="m">✓</span> Private practice community</li>
+        <li><span class="m">✓</span> Weekly live group session</li>
+        <li><span class="m">✓</span> Ongoing support &amp; guidance</li>
+        <li><span class="m">✓</span> Bonus: your personal starting-point plan</li>
+        <li><span class="m">✓</span> Access from any device, cancel anytime</li>
+        <li style="color:var(--gold)"><span class="m" style="color:var(--gold)">✦</span> <b>7 days free before you're charged anything</b></li>
+      </ul>
+      <a href="#checkout" class="btn btn-primary btn-glow btn-block">Start Your 7-Day Free Trial</a>
+      <p class="micro"><b>Free for 7 days</b> · Then $57/mo · Cancel anytime</p>
+    </div>
+  </section>
+
+  <!-- ============ 9. FAQ ============ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Before you decide</span>
+        <h2>Frequently asked questions</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>How much time do I need per day? <span class="plus">+</span></summary>
+          <div class="body">Between 30 and 45 minutes. The system is built specifically for adults with full lives. That's enough time to make real, consistent progress — when you use it the right way.</div>
+        </details>
+        <details>
+          <summary>Am I too old to learn? <span class="plus">+</span></summary>
+          <div class="body">No. This is one of the most damaging myths about language learning. Adults have real advantages: you understand how you learn, you have genuine motivation, and you have a clear reason for why you need the language. The system is designed for adult learners, not teenagers in a classroom.</div>
+        </details>
+        <details>
+          <summary>What exactly happens with the free trial? <span class="plus">+</span></summary>
+          <div class="body">You get full access for 7 days. If you cancel before the trial ends, you're not charged anything. If you stay, your membership starts at $57/mo and that rate stays locked for as long as you remain a member.</div>
+        </details>
+        <details>
+          <summary>How long until I see results? <span class="plus">+</span></summary>
+          <div class="body">Most members notice a significant jump in comprehension within the first six to eight weeks. Conversational ability — holding a basic exchange — typically arrives between weeks sixteen and twenty. It depends on your starting point and consistency, but the progress is clear.</div>
+        </details>
+        <details>
+          <summary>Do I need any Spanish background? <span class="plus">+</span></summary>
+          <div class="body">No. The program starts from zero. If you already have a base, we start where you are and move faster. Either way, you never begin feeling lost.</div>
+        </details>
+        <details>
+          <summary>What happens the moment I join? <span class="plus">+</span></summary>
+          <div class="body">You get immediate, progressive access to the program, the practice materials and the private community. You can start within minutes of joining.</div>
+        </details>
+        <details>
+          <summary>Is this available on iOS and Android? <span class="plus">+</span></summary>
+          <div class="body">The community and all materials are accessible from any device with a browser, so you can learn and practice wherever you are.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10. FINAL CTA / CHECKOUT ============ -->
+  <section class="final" id="checkout">
+    <div class="wrap">
+      <span class="eyebrow">Still here? You're not like everyone else</span>
+      <h2>Start speaking real Spanish <span class="turq">today</span></h2>
+      <p>What you can't build alone is the structure, the progression, and the real practice environment that make the language actually stick. Join below and get instant access.</p>
+      <div class="checkout-box">
+        <div class="co-price"><span class="co-now">$57</span><span class="co-per">/mo</span></div>
+        <span class="co-trial">✦ 7 days free</span>
+        <p class="co-sub">Then <b>$57/mo</b> · Cancel anytime · Nothing charged today</p>
+        <div id="paypal-button-container-P-3RA10924ET035924YNIRTWBA"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="wrap">
+      <div class="brand center" style="justify-content:center;font-weight:800">ProgresSpanish</div>
+      <div class="flinks">
+        <a href="https://www.instagram.com/progresspanish/" target="_blank" rel="noopener">Instagram</a>
+        <a href="#method">The Method</a>
+        <a href="#offer">What You Get</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <p>Alejandra · Founder &amp; teacher</p>
+      <p>© 2026 ProgresSpanish. All rights reserved. · Real Spanish for real life.</p>
+    </div>
+  </footer>
+
+  <!-- Countdown to the founding-member deadline.
+       IMPORTANT: set OFFER_DEADLINE to your real cut-off date, and update #spots-left
+       with the real number of spots. If the date passes, the box hides itself. -->
+  <script>
+    (function(){
+      var OFFER_DEADLINE = new Date('2026-09-30T23:59:59-03:00');
+      var el = document.getElementById('countdown');
+      var box = el ? el.closest('.countdown-box') : null;
+      function tick(){
+        var diff = OFFER_DEADLINE - new Date();
+        if (diff <= 0){ if(box) box.style.display='none'; clearInterval(t); return; }
+        var s = Math.floor(diff/1000), d = Math.floor(s/86400), h = Math.floor(s%86400/3600),
+            m = Math.floor(s%3600/60), sec = s%60;
+        el.textContent = d+'d ' + String(h).padStart(2,'0')+'h ' + String(m).padStart(2,'0')+'m ' + String(sec).padStart(2,'0')+'s';
+      }
+      var t = setInterval(tick, 1000); tick();
+    })();
+  </script>
+
+  <!-- PayPal subscription checkout -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AdHQsrOHZwdWZGbLkT-GYUEc64Bwu0wsiDEJ8eiYzpZ27I4D3Ok8xFKI6uInYZT5YKF3LSt_D5ZE41fd&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+  <script>
+    paypal.Buttons({
+      style: { shape: 'rect', color: 'gold', layout: 'vertical', label: 'subscribe' },
+      createSubscription: function(data, actions) {
+        return actions.subscription.create({
+          plan_id: 'P-3RA10924ET035924YNIRTWBA'
+        });
+      },
+      onApprove: function(data, actions) {
+        // The actual "Purchase" conversion fires on thank-you.html once the buyer lands there.
+        window.location.href = 'thank-you.html';
+      }
+    }).render('#paypal-button-container-P-3RA10924ET035924YNIRTWBA');
+  </script>
+</body>
+</html>
