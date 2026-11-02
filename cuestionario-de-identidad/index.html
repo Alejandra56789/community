@@ -1,460 +1,187 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ProgresSpanish Spanish Quiz</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Figtree:wght@400;500;600;700&display=swap">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '633455245862715');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Training: Speak Real Spanish With Confidence | ProgresSpanish</title>
 <style>
-/* Layout: single centered column like the landing; one screen per step, intro → 8 questions → email → result */
-:root{
-  color-scheme: dark;
-  --bg:#0F3D38;          /* landing section teal */
-  --bg-deep:#0A2E2A;     /* darker band */
-  --card:#14504A;        /* option cards */
-  --card-hi:#1A5C55;
-  --line:rgba(94,224,208,.18);
-  --accent:#5EE0D0;      /* turquoise highlight */
-  --eyebrow:#F2A285;     /* sand/coral eyebrow */
-  --btn:#F8EDC4;         /* butter CTA */
-  --btn-ink:#0A2E2A;
-  --fg:#FFFFFF;
-  --muted:#B5D3CE;
-  --soft:#86ABA6;
-  --display:"Poppins", "Segoe UI", system-ui, sans-serif;
-  --body:"Figtree", "Segoe UI", system-ui, sans-serif;
-  --r:14px;
-}
-*{box-sizing:border-box}
-html,body{min-height:100%}
-body{
-  background:var(--bg); color:var(--fg);
-  font-family:var(--body); font-size:16px; line-height:1.55;
-  -webkit-font-smoothing:antialiased;
-}
-.wrap{
-  max-width:680px; margin:0 auto;
-  padding-left:max(16px, env(safe-area-inset-left, 0px));
-  padding-right:max(16px, env(safe-area-inset-right, 0px));
-  padding-block:28px 56px;
-}
-.brand{display:flex; justify-content:center; align-items:center; gap:8px; font-family:var(--display); font-weight:700; font-size:15px; letter-spacing:.01em; margin-bottom:28px}
-.brand b{color:var(--accent); font-weight:700}
-
-.pill{display:inline-block; background:rgba(94,224,208,.1); border:1px solid var(--line); color:var(--accent); font-size:12.5px; font-weight:600; padding:6px 14px; border-radius:999px}
-.eyebrow{color:var(--eyebrow); font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase}
-h1,h2,h3{font-family:var(--display); font-weight:800; line-height:1.15; margin:0; text-wrap:balance; letter-spacing:-.01em}
-h1{font-size:clamp(30px, 6.4vw, 44px)}
-h2{font-size:clamp(23px, 4.8vw, 30px)}
-h3{font-size:18px; font-weight:700}
-.hl{color:var(--accent)}
-.lead{color:var(--muted); font-size:17px; max-width:56ch; margin:0 auto}
-.center{text-align:center}
-.stack{display:flex; flex-direction:column; gap:18px}
-
-.btn{
-  display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  background:var(--btn); color:var(--btn-ink);
-  font-family:var(--body); font-weight:700; font-size:16px;
-  border:0; border-radius:12px; padding:16px 30px; cursor:pointer; text-decoration:none;
-  box-shadow:0 8px 24px rgba(0,0,0,.25); transition:transform .15s ease, box-shadow .15s ease;
-}
-.btn:hover{transform:translateY(-1px); box-shadow:0 12px 28px rgba(0,0,0,.32)}
-.btn:focus-visible,.opt:focus-visible,.back:focus-visible,input:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
-.fine{color:var(--soft); font-size:13px}
-
-/* Intro */
-.intro{padding-top:8px}
-.intro h1{margin-top:4px}
-.stats{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; background:var(--bg-deep); border-radius:var(--r); padding:18px 10px; margin-top:8px}
-.stats div{text-align:center}
-.stats strong{display:block; font-family:var(--display); color:var(--accent); font-size:22px; font-weight:800}
-.stats span{color:var(--muted); font-size:12.5px}
-
-/* Quiz */
-.qbar{display:flex; align-items:center; gap:14px; margin-bottom:26px}
-.back{background:none; border:1px solid var(--line); color:var(--muted); border-radius:10px; width:38px; height:38px; cursor:pointer; font-size:18px; flex:none}
-.back[disabled]{opacity:.3; cursor:default}
-.bar{flex:1; height:6px; background:var(--bg-deep); border-radius:99px; overflow:hidden}
-.bar i{display:block; height:100%; width:0; background:var(--accent); border-radius:99px; transition:width .35s ease}
-.count{color:var(--soft); font-size:13px; font-variant-numeric:tabular-nums; flex:none; min-width:44px; text-align:right}
-.q-head{margin-bottom:22px}
-.q-head .eyebrow{display:block; margin-bottom:10px}
-.q-head p{color:var(--muted); margin:10px 0 0}
-.opts{display:flex; flex-direction:column; gap:12px}
-.opt{
-  display:flex; align-items:center; gap:14px; width:100%; text-align:left;
-  background:var(--card); border:1px solid var(--line); border-radius:var(--r);
-  color:var(--fg); font-family:var(--body); font-size:16px; font-weight:500; line-height:1.4;
-  padding:17px 18px; cursor:pointer; transition:background .15s ease, border-color .15s ease, transform .15s ease;
-}
-.opt:hover{background:var(--card-hi); border-color:rgba(94,224,208,.4)}
-.opt .dot{flex:none; width:24px; height:24px; border-radius:50%; border:1.5px solid rgba(181,211,206,.5); display:grid; place-items:center; transition:all .15s ease}
-.opt .dot svg{opacity:0; transition:opacity .15s ease}
-.opt[aria-checked="true"]{border-color:var(--accent); background:var(--card-hi)}
-.opt[aria-checked="true"] .dot{background:var(--accent); border-color:var(--accent)}
-.opt[aria-checked="true"] .dot svg{opacity:1}
-.opt span{min-width:0}
-
-/* Email gate */
-.gate{background:var(--bg-deep); border:1px solid var(--line); border-radius:18px; padding:28px 22px}
-.field{display:flex; flex-direction:column; gap:6px; text-align:left}
-.field label{font-size:13.5px; font-weight:600; color:var(--muted)}
-.field input{background:var(--card); border:1px solid var(--line); border-radius:12px; color:var(--fg); font:inherit; padding:14px 16px}
-.field input::placeholder{color:var(--soft)}
-.err{color:var(--eyebrow); font-size:13.5px; min-height:1.2em; margin:0}
-
-/* Result */
-.result .badge{display:inline-flex; align-items:center; gap:8px}
-.card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:22px}
-.card p{margin:8px 0 0; color:var(--muted)}
-.motive{border-left:3px solid var(--accent); padding:4px 0 4px 16px; color:var(--fg); font-size:17px; margin:0}
-.steps{display:grid; grid-template-columns:repeat(4,1fr); gap:8px}
-.step{background:var(--bg-deep); border:1px solid transparent; border-radius:12px; padding:14px 10px; text-align:center; min-width:0}
-.step .n{display:inline-grid; place-items:center; width:28px; height:28px; border-radius:8px; background:rgba(94,224,208,.15); color:var(--accent); font-weight:700; font-size:14px}
-.step .t{display:block; font-size:13px; font-weight:600; margin-top:8px; color:var(--muted); overflow-wrap:anywhere}
-.step.on{border-color:var(--accent); background:var(--card-hi)}
-.step.on .n{background:var(--accent); color:var(--btn-ink)}
-.step.on .t{color:var(--fg)}
-.step .you{display:block; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--eyebrow); font-weight:700; margin-top:4px; min-height:1.3em}
-.week{list-style:none; padding:0; margin:12px 0 0; display:flex; flex-direction:column; gap:10px}
-.week li{display:flex; gap:12px; color:var(--muted)}
-.week li b{color:var(--accent); flex:none; font-variant-numeric:tabular-nums; min-width:64px; font-weight:600}
-.mix{display:flex; flex-direction:column; gap:10px; margin-top:12px}
-.mix .row{display:grid; grid-template-columns:150px 1fr 40px; gap:12px; align-items:center; font-size:14px; color:var(--muted)}
-.mix .track{height:8px; background:var(--bg-deep); border-radius:99px; overflow:hidden}
-.mix .track i{display:block; height:100%; background:rgba(94,224,208,.45); border-radius:99px}
-.mix .row.top .track i{background:var(--accent)}
-.mix .row.top{color:var(--fg); font-weight:600}
-.mix .pct{text-align:right; font-variant-numeric:tabular-nums}
-.cta{background:var(--bg-deep); border-radius:18px; padding:30px 22px; text-align:center}
-.cta .btn{margin-top:18px}
-.debug{margin-top:28px; background:#06201D; border:1px dashed var(--line); border-radius:12px; padding:14px; font:12px/1.5 ui-monospace,Menlo,monospace; color:var(--muted); white-space:pre-wrap; overflow-x:auto}
-
-.screen{animation:in .35s ease both}
-@keyframes in{from{opacity:.0; transform:translateY(8px)}to{opacity:1; transform:none}}
-@media (max-width:520px){
-  .steps{grid-template-columns:repeat(2,1fr)}
-  .mix .row{grid-template-columns:118px 1fr 36px; font-size:13px}
-  .stats strong{font-size:19px}
-}
-@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+  :root{
+    --bg:#0E4444;
+    --bg-2:#0B3838;
+    --bg-3:#0A3030;
+    --card:#13504F;
+    --line:rgba(98,217,214,.18);
+    --turq:#62D9D6;
+    --coral:#E0A48C;
+    --coral-deep:#d8916f;
+    --cream:#F3EFC9;
+    --text:#EAF6F6;
+    --muted:#9FBFBE;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--bg);color:var(--text);min-height:100vh;
+    font-family:'Segoe UI',system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(700px 380px at 15% 0%,rgba(98,217,214,.12),transparent 70%),
+      radial-gradient(700px 420px at 100% 100%,rgba(224,164,140,.10),transparent 70%);
+    display:flex;flex-direction:column;
+  }
+  h1{font-size:clamp(2.1rem,4.6vw,3.5rem);line-height:1.08;font-weight:800;letter-spacing:-.015em}
+  .turq{color:var(--turq)}
+  .cream{color:var(--cream)}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;width:100%}
+  /* top bar */
+  .topbar{padding:22px 0}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem}
+  .brand .dot{width:28px;height:28px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--turq),#2b8c8a)}
+  /* hero grid */
+  .hero{flex:1;display:grid;grid-template-columns:1.1fr .9fr;gap:54px;align-items:center;padding:30px 0 100px}
+  @media(max-width:900px){.hero{grid-template-columns:1fr;gap:36px;padding:10px 0 90px}}
+  .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(224,164,140,.45);
+     background:rgba(224,164,140,.10);color:var(--coral);font-weight:800;font-size:.78rem;
+     letter-spacing:.16em;text-transform:uppercase;padding:9px 18px;border-radius:999px;margin-bottom:24px}
+  .hero h1{margin-bottom:20px}
+  .hero .sub{color:var(--muted);font-size:clamp(1rem,1.5vw,1.15rem);max-width:46ch;margin-bottom:26px}
+  .benefits{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+  .benefits li{display:flex;gap:12px;align-items:flex-start;font-size:1rem}
+  .benefits .ic{flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:var(--turq);color:#073231;
+     font-weight:900;display:flex;align-items:center;justify-content:center;font-size:.8rem;margin-top:3px}
+  .host{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:.92rem}
+  .host .av{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--turq))}
+  .host b{color:var(--text)}
+  /* form card */
+  .formcard{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:34px 32px;
+     box-shadow:0 34px 80px rgba(0,0,0,.4)}
+  .formcard .ftag{display:inline-block;background:rgba(98,217,214,.14);color:var(--turq);font-weight:800;
+     font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:8px;margin-bottom:16px}
+  .formcard h2{font-size:1.5rem;font-weight:800;margin-bottom:6px}
+  .formcard .fsub{color:var(--muted);font-size:.95rem;margin-bottom:24px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:.82rem;font-weight:700;color:var(--muted);margin-bottom:7px}
+  .field input{width:100%;background:var(--bg-3);border:1px solid var(--line);border-radius:12px;
+     color:var(--text);font-size:1rem;padding:14px 16px;outline:none;transition:border-color .15s,box-shadow .15s}
+  .field input::placeholder{color:#6f8d8c}
+  .field input:focus{border-color:var(--turq);box-shadow:0 0 0 3px rgba(98,217,214,.18)}
+  .submit{width:100%;border:none;cursor:pointer;background:var(--cream);color:#0A3030;font-weight:800;
+     font-size:1.05rem;padding:16px;border-radius:999px;margin-top:6px;
+     box-shadow:0 12px 30px rgba(243,239,201,.2);transition:transform .15s,box-shadow .15s}
+  .submit:hover{transform:translateY(-2px);box-shadow:0 16px 38px rgba(243,239,201,.3)}
+  .formcard .legal{text-align:center;color:var(--muted);font-size:.78rem;margin-top:16px}
+  .formcard .instant{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--turq);
+     font-size:.84rem;font-weight:700;margin-top:14px}
+  footer{text-align:center;color:var(--muted);font-size:.8rem;padding:24px 0;border-top:1px solid var(--line)}
+  /* extra breathing room on mobile */
+  @media(max-width:600px){
+    .wrap{padding:0 28px}
+    h1{font-size:clamp(1.9rem,8vw,2.4rem)}
+    .formcard{padding:30px 24px}
+  }
 </style>
-<style>html,body{margin:0}[hidden]{display:none!important}</style>
 </head>
 <body>
-
-<div class="wrap">
-  <div class="brand">Progre<b>Spanish</b></div>
-  <main id="app" aria-live="polite"></main>
-</div>
-
-<script>
-/* ===== CONFIG ===== */
-const CTA_URL = "https://progresspanish.com/spanish-community";   // hot + plan answers
-const IG_URL  = "https://www.instagram.com/progresspanish/";       // curious + exploring answers
-const WARM = ["hot","plan"];
-// Google Sheets database: paste your Apps Script Web App URL (ends in /exec)
-const SHEET_URL = "";
-
-/* Profiles: FS Fresh Starter, WC Word Collector, SU Silent Understander, OO On-and-Off */
-const QUESTIONS = [
-  { id:"motivation", eyebrow:"Let's start with you", q:"Why do you want to speak Spanish?", scored:false, opts:[
-    {t:"To connect with my partner or their family", v:"partner"},
-    {t:"I live in, or I'm moving to, a Spanish-speaking country", v:"living"},
-    {t:"I travel to Latin America or Spain often", v:"travel"},
-    {t:"For work, or just for me", v:"work_self"} ]},
-  { id:"time", eyebrow:"Your Spanish so far", q:"How long have you been learning Spanish?", w:2, opts:[
-    {t:"I'm just getting started", p:"FS"},
-    {t:"A while, mostly with apps, videos or podcasts", p:"WC"},
-    {t:"A few years. I understand more than I can say", p:"SU"},
-    {t:"I've started and stopped more than once", p:"OO"} ]},
-  { id:"native", eyebrow:"Real conversations", q:"A native speaker starts talking to you. What happens?", w:2, opts:[
-    {t:"I catch a few words, but I'm mostly lost", p:"FS"},
-    {t:"I know a lot of the words, but I can't build an answer", p:"WC"},
-    {t:"I understand most of it, then freeze when it's my turn", p:"SU"},
-    {t:"It depends on how much I've practiced lately", p:"OO"} ]},
-  { id:"tried", eyebrow:"What you've tried", q:"What have you tried so far?", w:1, opts:[
-    {t:"Nothing serious yet", p:"FS", v:"nothing"},
-    {t:"Apps like Duolingo, YouTube, podcasts", p:"WC", v:"apps"},
-    {t:"Classes or a tutor", p:"SU", v:"classes"},
-    {t:"A bit of everything, never for long", p:"OO", v:"mixed"} ]},
-  { id:"frustration", eyebrow:"Where it gets hard", q:"What frustrates you the most right now?", w:2, opts:[
-    {t:"I don't know where to begin", p:"FS"},
-    {t:"I know words, but I can't put them together", p:"WC"},
-    {t:"My mind goes blank when I have to speak", p:"SU"},
-    {t:"I lose momentum and fall behind", p:"OO"} ]},
-  { id:"style", eyebrow:"How you learn", q:"How do you like to learn?", scored:false, opts:[
-    {t:"I like to understand why things work", v:"why"},
-    {t:"I like to practice a lot and figure it out", v:"practice"},
-    {t:"A mix of both", v:"mix"} ]},
-  { id:"week", eyebrow:"Your routine", q:"Be honest: what does your Spanish week look like?", w:2, opts:[
-    {t:"I don't have a routine yet", p:"FS"},
-    {t:"A few minutes on an app most days", p:"WC"},
-    {t:"I study or listen, but I rarely speak", p:"SU"},
-    {t:"Some weeks a lot, some weeks nothing", p:"OO"} ]},
-  { id:"commitment", eyebrow:"Last question", q:"Are you ready to practice Spanish 30–45 minutes a day?",
-    sub:"It's what ProgresSpanish members commit to: a short daily routine with the program, plus a live group session every week to speak with real people.", scored:false, opts:[
-    {t:"Yes. I'm ready to practice daily and join the weekly live session", v:"hot"},
-    {t:"Yes, as long as I know exactly what to do each day", v:"plan"},
-    {t:"I'm just curious, not looking to learn anything", v:"curious"},
-    {t:"Not yet. I'm only exploring", v:"exploring"} ]}
-];
-
-const PROFILES = {
-  FS:{ name:"The Fresh Starter", step:1,
-    hook:"You're at a great starting point: no bad habits to undo.",
-    what:"Most beginners give up because they start with random vocabulary and grammar tables. Without a base, nothing sticks, and every new word feels disconnected from the last one.",
-    plan:"You start with <b>Foundations</b>: pronunciation and the core sentences you need to communicate from day one. You don't wait until you \"know enough\". You use it right away.",
-    week:[["Days 1–2","Pronunciation that native speakers understand"],["Days 3–5","Your first ten sentences about you and your life"],["Days 6–7","A short, guided first conversation"]] },
-  WC:{ name:"The Word Collector", step:2,
-    hook:"You know more Spanish than you think. You just can't put it together yet.",
-    what:"Apps teach words one by one, but they rarely show you how Spanish sentences are built. So you recognize a lot, and still can't build an answer when someone is waiting for one.",
-    plan:"You start with <b>Structure</b>: the verbs and tenses you'll actually use, in context. Present for your life and routines, past for your stories, future for your plans. Only the essential, in the right order.",
-    week:[["Days 1–2","Ser and estar in real sentences about you"],["Days 3–5","Turn the words you know into full answers"],["Days 6–7","Tell a short story about your week, out loud"]] },
-  SU:{ name:"The Silent Understander", step:3,
-    hook:"Your Spanish is in there. It just hasn't had the chance to come out.",
-    what:"You've trained your listening and reading for years. Speaking is a separate skill, and it only grows with practice in a safe space. Without that, your mind goes blank right when it's your turn.",
-    plan:"You start with <b>Immersion</b>: guided speaking practice around situations from your real life, with feedback, before you do it for real. Reading, listening and writing support what you say.",
-    week:[["Days 1–2","Short spoken answers about topics you already understand"],["Days 3–5","Role-play the conversations where you usually freeze"],["Days 6–7","A live practice session with the community"]] },
-  OO:{ name:"The On-and-Off Learner", step:4,
-    hook:"You don't have a talent problem. You have a rhythm problem.",
-    what:"Every time you stop, you lose part of what you built, and restarting feels heavier each time. Intense weeks followed by empty ones won't get you to fluency. Consistency beats intensity.",
-    plan:"You start with a <b>Sustainable routine</b>: a daily practice system that fits your week as it really is, plus a community practicing alongside you so you don't fall behind when life gets busy.",
-    week:[["Days 1–2","Pick your daily practice window and your own material"],["Days 3–5","Short daily sessions you can keep up on busy days"],["Days 6–7","Your first check-in with the community"]] }
-};
-const STEP_NAMES = ["Foundations","Structure","Immersion","Sustainable routine"];
-
-const MOTIVE = {
-  partner:"So you can follow the jokes at the family table and answer back, instead of smiling and nodding.",
-  living:"So everyday life, from the pharmacy to the neighbors to the paperwork, stops feeling like a test.",
-  travel:"So your next trip is about real conversations, not pointing at menus and reaching for a translator.",
-  work_self:"So you finally have a Spanish you can use, at work or just for yourself."
-};
-const STYLE = {
-  why:"You like to understand why things work, so each structure comes with a short, clear explanation before you practice it.",
-  practice:"You learn by doing, so most of your time goes into practicing real situations, and the rules come along the way.",
-  mix:"You like a mix, so you get the short explanation first and then plenty of practice."
-};
-const CLOSE = {
-  hot:{h:"You're ready. Your spot in the community is waiting.", s:"Start with the program step for your profile, follow your daily routine, and join this week's live group session."},
-  plan:{h:"You'll know exactly what to do every day.", s:"The program gives you a step-by-step path in the right order, and the weekly live sessions keep you on track."},
-  curious:{h:"Curious is a good place to start.", s:"See how the program and the weekly live sessions work from the inside. The 7-day trial is free and you can cancel anytime."},
-  exploring:{h:"Explore it for 7 days, free.", s:"Try the program, the daily practice and a live group session before you decide anything."}
-};
-
-/* ===== STATE ===== */
-const app = document.getElementById("app");
-let i = -1;                 // -1 intro, 0..n-1 questions, n gate, n+1 result
-const answers = {};
-let lead = {name:"", email:""};
-const check = '<svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3L13 4.5" stroke="#0A2E2A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-
-function score(){
-  const s = {FS:0, WC:0, SU:0, OO:0};
-  QUESTIONS.forEach(q=>{
-    if(q.scored===false) return;
-    const a = answers[q.id]; if(a==null) return;
-    s[q.opts[a].p] += q.w;
-  });
-  // tie-break: frustration answer, then native-speaker answer
-  const max = Math.max(...Object.values(s));
-  const tied = Object.keys(s).filter(k=>s[k]===max);
-  let top = tied[0];
-  if(tied.length>1){
-    const f = QUESTIONS[4].opts[answers.frustration]?.p;
-    const n = QUESTIONS[2].opts[answers.native]?.p;
-    top = tied.includes(f) ? f : tied.includes(n) ? n : tied[0];
-  }
-  return {scores:s, top};
-}
-function val(id){ const q = QUESTIONS.find(x=>x.id===id); const a = answers[id]; return a==null ? null : (q.opts[a].v || q.opts[a].p); }
-
-function payload(){
-  const {scores, top} = score();
-  return {
-    name: lead.name, email: lead.email,
-    profile: top, profile_name: PROFILES[top].name, starting_step: STEP_NAMES[PROFILES[top].step-1],
-    scores, motivation: val("motivation"), tried: val("tried"),
-    learning_style: val("style"), commitment: val("commitment"),
-    lead_temperature: WARM.includes(val("commitment")) ? "Warm" : "Cold",
-    source: location.href.split("#")[0],
-    answers: Object.fromEntries(QUESTIONS.map(q=>[q.id, answers[q.id]==null?null:q.opts[answers[q.id]].t])),
-    completed_at: new Date().toISOString()
-  };
-}
-
-/* ===== RENDER ===== */
-function render(){
-  window.scrollTo({top:0});
-  if(i<0) return intro();
-  if(i<QUESTIONS.length) return question();
-  if(i===QUESTIONS.length) return gate();
-  return result();
-}
-
-function intro(){
-  app.innerHTML = `<section class="screen intro stack center">
-    <div><span class="pill">Free 2-minute quiz · 8 questions</span></div>
-    <h1>What's really stopping you from <span class="hl">speaking Spanish?</span></h1>
-    <p class="lead">Answer 8 quick questions and find out your Spanish learner profile, the step where you're stuck, and where to start so you can finally hold a real conversation.</p>
-    <div><button class="btn" id="start">Start the quiz →</button></div>
-    <p class="fine">No signup to start · Built for busy English-speaking adults</p>
-    <div class="stats">
-      <div><strong>4+ yrs</strong><span>teaching &amp; refining the method</span></div>
-      <div><strong>4</strong><span>learner profiles</span></div>
-      <div><strong>2 min</strong><span>to your personal result</span></div>
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="wrap">
+      <div class="brand">ProgresSpanish</div>
     </div>
-  </section>`;
-  document.getElementById("start").onclick = ()=>{ i=0; render(); };
-}
-
-function question(){
-  const q = QUESTIONS[i], n = QUESTIONS.length;
-  app.innerHTML = `<section class="screen">
-    <div class="qbar">
-      <button class="back" id="back" aria-label="Previous question">←</button>
-      <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="${n}" aria-valuenow="${i}"><i id="fill"></i></div>
-      <span class="count">${i+1} / ${n}</span>
-    </div>
-    <div class="q-head">
-      <span class="eyebrow">${q.eyebrow}</span>
-      <h2>${q.q}</h2>
-      ${q.sub ? `<p>${q.sub}</p>` : ""}
-    </div>
-    <div class="opts" role="radiogroup" aria-label="${q.q}">
-      ${q.opts.map((o,k)=>`<button class="opt" role="radio" aria-checked="${answers[q.id]===k}" data-k="${k}"><span class="dot">${check}</span><span>${o.t}</span></button>`).join("")}
-    </div>
-  </section>`;
-  requestAnimationFrame(()=>{ document.getElementById("fill").style.width = (i/n*100)+"%"; });
-  document.getElementById("back").onclick = ()=>{ i--; render(); };
-  app.querySelectorAll(".opt").forEach(b=>b.onclick = ()=>{
-    answers[q.id] = +b.dataset.k;
-    app.querySelectorAll(".opt").forEach(x=>x.setAttribute("aria-checked", x===b));
-    document.getElementById("fill").style.width = ((i+1)/n*100)+"%";
-    setTimeout(()=>{ i++; render(); }, 280);
-  });
-}
-
-function gate(){
-  const {top} = score();
-  app.innerHTML = `<section class="screen stack">
-    <div class="qbar">
-      <button class="back" id="back" aria-label="Previous question">←</button>
-      <div class="bar"><i style="width:100%"></i></div>
-      <span class="count">Done</span>
-    </div>
-    <div class="gate stack center">
-      <span class="eyebrow">Your result is ready</span>
-      <h2>Where should we send your <span class="hl">Spanish plan?</span></h2>
-      <p class="lead" style="font-size:16px">We'll show your profile right away and email you a short plan with your first 7 days of practice.</p>
-      <form id="lead" class="stack" novalidate>
-        <div class="field"><label for="f-name">First name</label><input id="f-name" name="name" autocomplete="given-name" placeholder="Your first name" value="${lead.name}"></div>
-        <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@email.com" value="${lead.email}"></div>
-        <p class="err" id="err" role="alert"></p>
-        <button class="btn" type="submit">Show my result →</button>
-        <p class="fine">No spam. Unsubscribe anytime.</p>
-      </form>
-    </div>
-  </section>`;
-  document.getElementById("back").onclick = ()=>{ i--; render(); };
-  document.getElementById("lead").addEventListener("submit", e=>{
-    e.preventDefault();
-    const name = document.getElementById("f-name").value.trim();
-    const email = document.getElementById("f-email").value.trim();
-    const err = document.getElementById("err");
-    if(!name){ err.textContent = "Add your first name so we can personalize your plan."; return; }
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ err.textContent = "That email doesn't look right. Check it and try again."; return; }
-    lead = {name, email};
-    const data = payload();
-    // Save the lead in the Google Sheet
-    if(SHEET_URL){
-      fetch(SHEET_URL, {method:"POST", mode:"no-cors", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify(data), keepalive:true}).catch(()=>{});
-    }
-    window.quizLead = data;
-    window.dispatchEvent(new CustomEvent("quiz:lead", {detail:data}));
-    try{ localStorage.setItem("ps_quiz_last", JSON.stringify(data)); }catch(_){}
-    i++; render();
-  });
-}
-
-function thanks(){
-  const data = payload(), P = PROFILES[data.profile];
-  app.innerHTML = `<section class="screen stack center">
-    <div><span class="pill">Thank you, ${data.name}</span></div>
-    <h1>Thanks for taking <span class="hl">the quiz</span></h1>
-    <p class="lead">We'll send your result to <b style="color:var(--fg)">${data.email}</b>. Whenever you feel ready to start, it will be there.</p>
-    <div class="card" style="text-align:left">
-      <span class="eyebrow">Your Spanish learner profile</span>
-      <h3 style="margin-top:8px">${P.name}</h3>
-      <p>${P.hook}</p>
-    </div>
-    <div class="cta">
-      <h2>Learn a little Spanish every week</h2>
-      <p class="lead" style="margin-top:10px">Follow us on Instagram for short lessons, real phrases and tips you can use in your next conversation.</p>
-      <a class="btn" href="${IG_URL}" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Follow @progresspanish</a>
-    </div>
-    <p class="center"><button class="back" id="restart" style="width:auto;padding:0 16px">Retake the quiz</button></p>
-    ${location.hash==="#scoring" ? `<div class="debug" style="text-align:left">${JSON.stringify(data,null,2)}</div>` : ""}
-  </section>`;
-  document.getElementById("restart").onclick = ()=>{ for(const k in answers) delete answers[k]; i=-1; render(); };
-}
-
-function result(){
-  const data = payload(), P = PROFILES[data.profile];
-  if(!WARM.includes(data.commitment)) return thanks();
-  const total = Object.values(data.scores).reduce((a,b)=>a+b,0) || 1;
-  const order = Object.keys(data.scores).sort((a,b)=>data.scores[b]-data.scores[a]);
-  const c = CLOSE[data.commitment] || CLOSE.plan;
-  app.innerHTML = `<section class="screen result stack">
-    <div class="center stack" style="gap:12px">
-      <div><span class="pill">${data.name}, your Spanish learner profile</span></div>
-      <h1>You're <span class="hl">${P.name}</span></h1>
-      <p class="lead">${P.hook}</p>
-    </div>
-
-    ${data.motivation ? `<p class="motive">${MOTIVE[data.motivation]}</p>` : ""}
-
-    <div class="card">
-      <span class="eyebrow">What's going on</span>
-      <p>${P.what}</p>
-    </div>
-
-    <div class="card">
-      <span class="eyebrow">Where you start in the 4-step system</span>
-      <div class="steps" style="margin-top:14px">
-        ${STEP_NAMES.map((s,k)=>`<div class="step ${k+1===P.step?"on":""}"><span class="n">${k+1}</span><span class="t">${s}</span><span class="you">${k+1===P.step?"You start here":""}</span></div>`).join("")}
+  </div>
+  <!-- HERO -->
+  <section class="hero wrap">
+    <!-- LEFT: pitch -->
+    <div>
+      <span class="pill">Free training · Watch instantly</span>
+      <h1>Learn how to speak real Spanish <span class="turq">without living abroad</span> or relying on language apps</h1>
+      <p class="sub">A free training that reveals exactly why studying harder hasn't made you fluent, and the simple 4-step system that finally gets you speaking with confidence, in real conversations that matter.</p>
+      <ul class="benefits">
+        <li><span class="ic">✓</span> Why apps and classes leave you stuck, and what actually works.</li>
+        <li><span class="ic">✓</span> The 4-step system to go from "one word in four" to real conversation.</li>
+        <li><span class="ic">✓</span> How busy adults make real progress in just 30 to 45 minutes a day.</li>
+      </ul>
+      <div class="host">
+        <img class="av" style="object-fit:cover" src="alejadra2.jpeg" alt="Alejandra" onerror="this.outerHTML='&lt;span class=\'av\'&gt;&lt;/span&gt;'">
+        <div>Hosted by <b>Alejandra</b> · ProgresSpanish</div>
       </div>
-      <p>${P.plan}</p>
-      ${data.learning_style ? `<p>${STYLE[data.learning_style]}</p>` : ""}
     </div>
-
-    <div class="card">
-      <span class="eyebrow">Your first 7 days</span>
-      <ul class="week">${P.week.map(w=>`<li><b>${w[0]}</b><span>${w[1]}</span></li>`).join("")}</ul>
+    <!-- RIGHT: registration form -->
+    <div>
+      <div class="formcard">
+        <span class="ftag">Reserve your spot</span>
+        <h2>Get the free training</h2>
+        <p class="fsub">Enter your details and get instant access to the training video.</p>
+        <!--
+          TODO: connect this form to your email tool / Make webhook.
+          Option A: set action="" to your provider's form endpoint (systeme.io, Mailchimp, etc.) and remove the JS redirect.
+          Option B: keep the JS handler below to POST to a Make webhook and then send the viewer to the VSL.
+        -->
+        <form id="optin" novalidate>
+          <div class="field">
+            <label for="name">First name</label>
+            <input id="name" name="first_name" type="text" placeholder="Your first name" required autocomplete="given-name">
+          </div>
+          <div class="field">
+            <label for="email">Email address</label>
+            <input id="email" name="email" type="email" placeholder="you@email.com" required autocomplete="email">
+          </div>
+          <button type="submit" class="submit">Get instant access →</button>
+        </form>
+        <div class="instant">▶ Your training unlocks immediately after you register</div>
+        <p class="legal">We respect your privacy. No spam. Unsubscribe anytime.</p>
+      </div>
     </div>
-
-    <div class="card">
-      <span class="eyebrow">Your answers, by profile</span>
-      <div class="mix">${order.map(k=>{const pct=Math.round(data.scores[k]/total*100);return `<div class="row ${k===data.profile?"top":""}"><span>${PROFILES[k].name.replace("The ","")}</span><span class="track"><i style="width:${pct}%"></i></span><span class="pct">${pct}%</span></div>`}).join("")}</div>
-    </div>
-
-    <div class="cta">
-      <h2>${c.h}</h2>
-      <p class="lead" style="margin-top:10px">${c.s}</p>
-      <a class="btn" href="${CTA_URL}" target="_blank" rel="noopener">Start Your 7 Day Free Trial</a>
-      <p class="fine" style="margin-top:14px">No living abroad required · No endless grammar tables · Real practice from day one</p>
-    </div>
-
-    <p class="center"><button class="back" id="restart" style="width:auto;padding:0 16px">Retake the quiz</button></p>
-    ${location.hash==="#scoring" ? `<div class="debug">${JSON.stringify(data,null,2)}</div>` : ""}
-  </section>`;
-  document.getElementById("restart").onclick = ()=>{ for(const k in answers) delete answers[k]; i=-1; render(); };
-}
-
-render();
-</script>
+  </section>
+  <footer>
+    <div class="wrap">© 2026 ProgresSpanish. All rights reserved. · Real Spanish for real life.</div>
+  </footer>
+  <script>
+    document.getElementById('optin').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = document.getElementById('name').value.trim();
+      var email = document.getElementById('email').value.trim();
+      if (!name || !email || email.indexOf('@') === -1) {
+        alert('Please enter your name and a valid email.');
+        return;
+      }
+      // --- Save the lead to the Google Sheet (Apps Script Web App) ---
+      // Paste your deployed Web App URL here (it ends in /exec):
+      var ENDPOINT = 'https://script.google.com/macros/s/AKfycbwVbw7Qy9jYL8CbXD902fWOahI5fvOjjTEXlyKxpGncLa_O-UTJgPBBihk8VJAjSB9yUw/exec';
+      var redirected = false;
+      function go() {
+        if (redirected) return;
+        redirected = true;
+        window.location.href = 'https://progresspanish.com/spanish-community';
+      }
+      if (ENDPOINT.indexOf('http') === 0) {
+        // text/plain avoids a CORS preflight; no-cors = fire-and-forget
+        fetch(ENDPOINT, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ first_name: name, email: email, source: 'register.html' })
+        }).then(go, go);
+        setTimeout(go, 2500); // safety fallback if the network hangs
+      } else {
+        go(); // no endpoint set yet — just redirect
+      }
+    });
+  </script>
 </body>
 </html>
