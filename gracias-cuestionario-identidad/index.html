@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Thank You | ProgresSpanish</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#0F3D38; --bg-deep:#0A2E2A; --card:#14504A;
+  --line:rgba(94,224,208,.18); --accent:#5EE0D0; --eyebrow:#F2A285;
+  --btn:#F8EDC4; --btn-ink:#0A2E2A; --fg:#FFFFFF; --muted:#B5D3CE; --soft:#86ABA6;
+  --display:"Poppins","Segoe UI",system-ui,sans-serif;
+  --body:"Figtree","Segoe UI",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0; min-height:100%}
+body{background:var(--bg); color:var(--fg); font-family:var(--body); font-size:16px; line-height:1.55; -webkit-font-smoothing:antialiased}
+.wrap{max-width:640px; margin:0 auto; padding:28px max(16px, env(safe-area-inset-right, 0px)) 56px max(16px, env(safe-area-inset-left, 0px)); display:flex; flex-direction:column; gap:20px; text-align:center}
+.brand{font-family:var(--display); font-weight:700; font-size:15px; margin-bottom:8px}
+.brand b{color:var(--accent)}
+.pill{display:inline-block; background:rgba(94,224,208,.1); border:1px solid var(--line); color:var(--accent); font-size:12.5px; font-weight:600; padding:6px 14px; border-radius:999px}
+h1,h2,h3{font-family:var(--display); font-weight:800; line-height:1.15; margin:0; text-wrap:balance; letter-spacing:-.01em}
+h1{font-size:clamp(30px,6.4vw,44px)} h2{font-size:clamp(22px,4.6vw,28px)} h3{font-size:19px; font-weight:700; margin-top:8px}
+.hl{color:var(--accent)}
+.lead{color:var(--muted); font-size:17px; max-width:54ch; margin:0 auto}
+.lead b{color:var(--fg)}
+.eyebrow{color:var(--eyebrow); font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase}
+.card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px; text-align:left}
+.card p{margin:8px 0 0; color:var(--muted)}
+.cta{background:var(--bg-deep); border-radius:18px; padding:30px 22px}
+.btn{display:inline-flex; align-items:center; gap:10px; margin-top:18px; background:var(--btn); color:var(--btn-ink); font-weight:700; font-size:16px; text-decoration:none; border-radius:12px; padding:16px 30px; box-shadow:0 8px 24px rgba(0,0,0,.25); transition:transform .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
+.fine{color:var(--soft); font-size:13px; margin:0}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="brand">Progre<b>Spanish</b></div>
+
+  <div><span class="pill" id="pill">Thank you</span></div>
+  <h1>Thanks for taking <span class="hl">the quiz</span></h1>
+  <p class="lead" id="lead">Your result is on its way to your inbox. Whenever you feel ready to start, it will be there.</p>
+
+  <div class="card" id="profile" hidden>
+    <span class="eyebrow">Your Spanish learner profile</span>
+    <h3 id="p-name"></h3>
+    <p id="p-hook"></p>
+  </div>
+
+  <div class="cta">
+    <h2>Learn a little Spanish every week</h2>
+    <p class="lead" style="margin-top:10px">Follow us on Instagram for short lessons, real phrases and tips you can use in your next conversation.</p>
+    <a class="btn" href="https://www.instagram.com/progresspanish/" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      Follow @progresspanish
+    </a>
+  </div>
+
+  <p class="fine">No living abroad required · No endless grammar tables · Real practice from day one</p>
+</main>
+
+<script>
+/* Personalizes the page if the quiz ran on the same domain (it saves "ps_quiz_last"),
+   or from URL params: gracias.html?name=Anna&email=anna@mail.com&profile=SU */
+(function(){
+  var HOOKS = {
+    FS:["The Fresh Starter","You're at a great starting point: no bad habits to undo."],
+    WC:["The Word Collector","You know more Spanish than you think. You just can't put it together yet."],
+    SU:["The Silent Understander","Your Spanish is in there. It just hasn't had the chance to come out."],
+    OO:["The On-and-Off Learner","You don't have a talent problem. You have a rhythm problem."]
+  };
+  var d = {};
+  try { d = JSON.parse(localStorage.getItem("ps_quiz_last")) || {}; } catch(e){}
+  var q = new URLSearchParams(location.search);
+  var name = q.get("name") || d.name, email = q.get("email") || d.email, prof = q.get("profile") || d.profile;
+  function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+  if(name) document.getElementById("pill").textContent = "Thank you, " + name;
+  if(email) document.getElementById("lead").innerHTML = "We'll send your result to <b>" + esc(email) + "</b>. Whenever you feel ready to start, it will be there.";
+  if(HOOKS[prof]){
+    document.getElementById("p-name").textContent = HOOKS[prof][0];
+    document.getElementById("p-hook").textContent = HOOKS[prof][1];
+    document.getElementById("profile").hidden = false;
+  }
+})();
+</script>
+</body>
+</html>
