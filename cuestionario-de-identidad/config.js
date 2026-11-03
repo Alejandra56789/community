@@ -6,8 +6,16 @@
 
 window.QUIZ_CONFIG = {
 
-  // Botón "Start my 7-day free trial" de las 4 páginas de resultado.
-  trialUrl: "https://progresspanish.com/spanish-community",
+  // Pago directo en la página del resultado (botones de PayPal: tarjeta o PayPal).
+  // Es el mismo plan de tu landing. Deja paypalPlanId vacío ("") para volver
+  // al botón que lleva a la landing.
+  paypalClientId: "AdHQsrOHZwdWZGbLkT-GYUEc64Bwu0wsiDEJ8eiYzpZ27I4D3Ok8xFKI6uInYZT5YKF3LSt_D5ZE41fd",
+  paypalPlanId: "P-3RA10924ET035924YNIRTWBA",
+  // Página a la que va la persona después de pagar.
+  thankYouUrl: "/thank-you/",
+
+  // Respaldo: si PayPal no carga, aparece un enlace a tu landing.
+  trialUrl: "https://progresspanish.com/spanish-community#checkout",
 
   // Páginas de captura de Systeme, una por identidad.
   // Mientras estén vacías (""), el quiz pide nombre y correo aquí mismo

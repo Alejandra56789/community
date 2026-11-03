@@ -178,6 +178,8 @@ em.es { font-style: italic; color: var(--primary); font-weight: 600; }
 .testimonial .video { aspect-ratio: 16 / 9; background: linear-gradient(135deg, #0047AB 0%, #093A3E 100%); }
 .cta { display: flex; flex-direction: column; gap: 10px; align-items: stretch; padding-block: 6px 10px; }
 .cta .small { text-align: center; }
+.cta-title { margin: 0; text-align: center; font-size: 20px; }
+#paypal-buttons { min-height: 120px; background: #fff; border-radius: 12px; padding: 12px; }
 .signoff { font-family: "Poppins", sans-serif; font-weight: 500; color: var(--ink-soft); text-align: center; }
 footer { padding-top: 26px; font-size: 13px; color: var(--muted); text-align: center; }
 </style>
@@ -452,14 +454,52 @@ footer { padding-top: 26px; font-size: 13px; color: var(--muted); text-align: ce
         '<p class="bridge">' + r.bridge + '</p>' +
         '<div class="testimonial"><h3>Nick’s story</h3>' + videoBlock(CFG.nickVideo, "Nick, now speaking Spanish with his family") + '</div>' +
         '<div class="cta">' +
-          '<a class="btn block" href="' + esc(CFG.trialUrl || "#") + '" target="_top" rel="noopener">Start my 7-day free trial</a>' +
-          '<p class="small">Then USD 57/month, founding member price. Cancel anytime.</p>' +
+          (CFG.paypalPlanId
+            ? '<h3 class="cta-title">Start your 7-day free trial</h3>' +
+              '<div id="paypal-buttons"></div>' +
+              '<p class="small">Then USD 57/month, founding member price. Cancel anytime.</p>' +
+              '<p class="small" id="paypal-fallback" hidden><a href="' + esc(CFG.trialUrl || "#") + '" target="_top" rel="noopener">Payment not loading? Continue here</a></p>'
+            : '<a class="btn block" href="' + esc(CFG.trialUrl || "#") + '" target="_top" rel="noopener">Start my 7-day free trial</a>' +
+              '<p class="small">Then USD 57/month, founding member price. Cancel anytime.</p>') +
           (CFG.messageUrl ? '<p class="msg-link">Not sure yet? <a href="' + esc(CFG.messageUrl) + '" target="_blank" rel="noopener">Send me a message on Instagram</a></p>' : '') +
         '</div>' +
         '<p class="signoff" lang="es">' + esc(r.signoff) + ' · Ale</p>' +
       '</section>';
     app.innerHTML = html;
+    if (CFG.paypalPlanId) mountPaypal();
     scrollTop();
+  }
+
+  // Botones de PayPal (tarjeta o PayPal) directo en la página del resultado
+  var paypalLoading = null;
+  function loadPaypal() {
+    if (window.paypal) return Promise.resolve();
+    if (paypalLoading) return paypalLoading;
+    paypalLoading = new Promise(function (ok, fail) {
+      var sc = document.createElement("script");
+      sc.src = "https://www.paypal.com/sdk/js?client-id=" + encodeURIComponent(CFG.paypalClientId) + "&vault=true&intent=subscription";
+      sc.setAttribute("data-sdk-integration-source", "button-factory");
+      sc.onload = ok; sc.onerror = fail;
+      document.head.appendChild(sc);
+    });
+    return paypalLoading;
+  }
+  function mountPaypal() {
+    var box = document.getElementById("paypal-buttons");
+    var fb = document.getElementById("paypal-fallback");
+    var showFallback = function () { if (fb) fb.hidden = false; };
+    loadPaypal().then(function () {
+      if (!document.getElementById("paypal-buttons")) return;
+      window.paypal.Buttons({
+        style: { shape: "rect", color: "gold", layout: "vertical", label: "subscribe" },
+        createSubscription: function (data, actions) {
+          return actions.subscription.create({ plan_id: CFG.paypalPlanId });
+        },
+        onApprove: function () {
+          window.location.href = CFG.thankYouUrl || "/thank-you/";
+        }
+      }).render(box).catch(showFallback);
+    }).catch(showFallback);
   }
 
   // ---------- Arranque ----------
