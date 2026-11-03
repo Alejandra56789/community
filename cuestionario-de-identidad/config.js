@@ -15,7 +15,7 @@ window.QUIZ_CONFIG = {
   // Cada página debe redirigir a:
   //   https://progresspanish.com/cuestionario-de-identidad/?type=<la identidad>
   // (por ejemplo ?type=fresh-starter).
-  // Cuando las pegues, al terminar la pregunta 8 la persona va a su
+  // Cuando las pegues, al terminar la pregunta 7 la persona va a su
   // página de Systeme, deja su correo y Systeme la trae de vuelta a su resultado.
   systemeOptinUrls: {
     "fresh-starter": "",
@@ -24,7 +24,7 @@ window.QUIZ_CONFIG = {
     "on-and-off": ""
   },
 
-  // Página de captura de Systeme para quienes responden en la pregunta 8
+  // Página de captura de Systeme para quienes responden en la pregunta 7
   // "Not yet, I'm just exploring" o "I'm only curious".
   // Reciben correos suaves (valor + Instagram) en vez de la secuencia de venta.
   // En Systeme, que esta página redirija a:

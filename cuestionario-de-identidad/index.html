@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>What kind of Spanish learner are you?</title>
-<meta name="description" content="Answer 8 quick questions and get your learner type, the reason you feel stuck, and the exact first step that fits you.">
+<meta name="description" content="Answer 7 quick questions and get your learner type, the reason you feel stuck, and the exact first step that fits you.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Raleway:wght@400;500;600&display=swap">
@@ -227,10 +227,6 @@ footer { padding-top: 26px; font-size: 13px; color: var(--muted); text-align: ce
       { t: "I know words, but I can't put them together", id: "word-collector" },
       { t: "My mind goes blank when I have to speak", id: "silent-understander" },
       { t: "I lose momentum and fall behind", id: "on-and-off" } ] },
-    { q: "How do you like to learn?", key: "style", options: [
-      { t: "I like to understand why things work", v: "why" },
-      { t: "I like to practice a lot and figure it out", v: "practice" },
-      { t: "A mix of both", v: "mix" } ] },
     { q: "Be honest: what does your Spanish week look like?", w: 2, options: [
       { t: "I don't have a routine yet", id: "fresh-starter" },
       { t: "A few minutes on an app most days", id: "word-collector" },
@@ -344,7 +340,7 @@ footer { padding-top: 26px; font-size: 13px; color: var(--muted); text-align: ce
       '<section class="screen start">' +
         '<p class="eyebrow">Free 2-minute quiz</p>' +
         '<h1>What kind of Spanish learner are you?</h1>' +
-        '<p class="lead">Answer 8 quick questions and get your learner type, the reason you feel stuck, and the exact first step that fits you. It takes 2 minutes.</p>' +
+        '<p class="lead">Answer 7 quick questions and get your learner type, the reason you feel stuck, and the exact first step that fits you. It takes 2 minutes.</p>' +
         '<div class="types" aria-hidden="true"><span>Fresh Starter</span><span>Word Collector</span><span>Silent Understander</span><span>On-and-Off Learner</span></div>' +
         '<div><button class="btn" id="startBtn">Find my learner type</button></div>' +
         '<p class="byline">Created by Ale, Spanish tutor based in Colombia. Almost 5 years, 8,000+ classes and 300+ students.</p>' +
@@ -391,8 +387,7 @@ footer { padding-top: 26px; font-size: 13px; color: var(--muted); text-align: ce
     store("type", id);
     store("motive", QUESTIONS[0].options[answers[0]].v);
     store("tried", QUESTIONS[3].options[answers[3]].v);
-    store("style", QUESTIONS[5].options[answers[5]].v);
-    var commit = QUESTIONS[7].options[answers[7]].v;
+    var commit = QUESTIONS[6].options[answers[6]].v;
     store("commit", commit);
     var cold = commit === "exploring" || commit === "curious";
     var optin = (cold && CFG.systemeOptinCurious) || (CFG.systemeOptinUrls || {})[id];
