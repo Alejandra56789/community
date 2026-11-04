@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What kind of Spanish learner are you?</title>
+<meta name="description" content="Answer 7 quick questions and get your learner type, the reason you feel stuck, and the exact first step that fits you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Raleway:wght@400;500;600&display=swap">
+<style>
+:root {
+  --bg: #0E4444; --surface: #13504F; --surface-soft: #175B5A; --ink: #EAF6F6;
+  --ink-soft: #C9E0E0; --muted: #9FBFBE; --line: rgba(98,217,214,.22);
+  --primary: #F3EFC9; --primary-ink: #0A2E2E; --primary-hover: #FFFBDD;
+  --accent: #62D9D6; --accent-soft: rgba(98,217,214,.14); --beige: #E0A48C;
+  --focus: #62D9D6;
+  --shadow: 0 1px 2px rgba(0,0,0,.2), 0 8px 24px rgba(0,0,0,.22);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+.msg-link { margin: 14px 0 0; text-align: center; font-size: 15px; color: var(--ink-soft); }
+.msg-link a { color: var(--accent); font-weight: 600; }
+html, body { margin: 0; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Raleway", "Segoe UI", system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: max(20px, env(safe-area-inset-top, 0px)) max(28px, env(safe-area-inset-bottom, 0px));
+}
+header.brand {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; padding-block: 4px 18px;
+}
+.logo {
+  font-family: "Poppins", system-ui, sans-serif; font-weight: 600; font-size: 15px;
+  letter-spacing: .01em; color: var(--ink); text-decoration: none;
+}
+.logo b { color: var(--primary); font-weight: 700; }
+.step-count { font-family: "Poppins", sans-serif; font-size: 13px; color: var(--muted); }
+main { flex: 1; display: flex; flex-direction: column; }
+h1, h2, h3 {
+  font-family: "Poppins", system-ui, sans-serif; color: var(--ink);
+  text-wrap: balance; margin: 0; line-height: 1.2;
+}
+h1 { font-size: clamp(30px, 7vw, 42px); font-weight: 700; letter-spacing: -.01em; }
+h2 { font-size: clamp(23px, 5.4vw, 30px); font-weight: 600; }
+h3 { font-size: 19px; font-weight: 600; }
+p { margin: 0; }
+.screen { display: flex; flex-direction: column; gap: 22px; animation: rise .35s ease both; }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .screen { animation: none; } }
+
+/* Start */
+.start { justify-content: center; flex: 1; gap: 26px; padding-block: 4vh 2vh; }
+.eyebrow {
+  font-family: "Poppins", sans-serif; font-size: 12px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .12em; color: var(--primary);
+}
+.lead { font-size: 18px; color: var(--ink-soft); max-width: 34em; }
+.types { display: flex; flex-wrap: wrap; gap: 8px; }
+.types span {
+  font-family: "Poppins", sans-serif; font-size: 13px; padding: 6px 12px;
+  border-radius: 999px; background: var(--surface-soft); color: var(--ink-soft);
+}
+.byline { font-size: 14px; color: var(--muted); max-width: 30em; }
+
+/* Buttons */
+.btn {
+  appearance: none; border: 0; cursor: pointer; text-decoration: none; text-align: center;
+  font-family: "Poppins", sans-serif; font-weight: 600; font-size: 17px;
+  background: var(--primary); color: var(--primary-ink);
+  padding: 16px 26px; border-radius: 14px; display: inline-block;
+  transition: background .15s ease, transform .1s ease;
+}
+.btn:hover { background: var(--primary-hover); }
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible, .option:focus-visible, .back:focus-visible, input:focus-visible {
+  outline: 3px solid var(--focus); outline-offset: 2px;
+}
+.btn.block { width: 100%; }
+.back {
+  appearance: none; background: none; border: 0; cursor: pointer; padding: 6px 2px;
+  font-family: "Poppins", sans-serif; font-size: 14px; color: var(--muted); align-self: flex-start;
+}
+.back:hover { color: var(--ink); }
+
+/* Question */
+.progress { height: 6px; background: var(--surface-soft); border-radius: 999px; overflow: hidden; }
+.progress i { display: block; height: 100%; background: var(--accent); border-radius: 999px; transition: width .3s ease; }
+.options { display: grid; gap: 12px; }
+.option {
+  appearance: none; text-align: left; cursor: pointer; width: 100%;
+  font-family: "Raleway", sans-serif; font-size: 17px; font-weight: 500; color: var(--ink);
+  background: var(--surface); border: 1.5px solid var(--line); border-radius: 14px;
+  padding: 16px 18px; box-shadow: var(--shadow);
+  display: flex; gap: 14px; align-items: center;
+  transition: border-color .15s ease, background .15s ease;
+}
+.option:hover { border-color: var(--accent); }
+.option[aria-pressed="true"] { border-color: var(--primary); background: var(--accent-soft); }
+.option .key {
+  flex: none; width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center;
+  font-family: "Poppins", sans-serif; font-size: 13px; font-weight: 600;
+  background: var(--surface-soft); color: var(--ink-soft);
+}
+.option[aria-pressed="true"] .key { background: var(--primary); color: var(--primary-ink); }
+
+/* Email */
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+  padding: 24px 20px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 16px;
+}
+label { font-family: "Poppins", sans-serif; font-size: 14px; font-weight: 500; color: var(--ink-soft); display: grid; gap: 6px; }
+input {
+  font: inherit; font-size: 17px; color: var(--ink); background: var(--bg);
+  border: 1.5px solid var(--line); border-radius: 12px; padding: 14px 14px; width: 100%;
+}
+.small { font-size: 14px; color: var(--muted); }
+.error { font-size: 14px; color: #B3261E; }
+.preview-note {
+  font-size: 13px; color: var(--ink-soft); background: var(--surface-soft);
+  border-radius: 10px; padding: 10px 12px;
+}
+
+/* Result */
+.result { gap: 26px; }
+.badge {
+  align-self: flex-start; font-family: "Poppins", sans-serif; font-size: 12px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--ink);
+  background: var(--accent-soft); border: 1px solid var(--accent); padding: 6px 12px; border-radius: 999px;
+}
+.video {
+  position: relative; width: 100%; max-width: 100%; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden;
+  background: linear-gradient(135deg, #093A3E 0%, #0B4F55 100%);
+  display: grid; place-items: center; box-shadow: var(--shadow);
+}
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video .ph { text-align: center; color: #EAF4F3; padding: 16px; display: grid; gap: 10px; justify-items: center; }
+.video .play {
+  width: 58px; height: 58px; border-radius: 50%; background: var(--accent);
+  display: grid; place-items: center;
+}
+.video .play::after {
+  content: ""; border-left: 18px solid #093A3E; border-top: 11px solid transparent; border-bottom: 11px solid transparent; margin-left: 5px;
+}
+.video .ph span { font-family: "Poppins", sans-serif; font-size: 14px; opacity: .85; }
+.prose { display: flex; flex-direction: column; gap: 14px; max-width: 36em; }
+.route {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+  padding: 22px 20px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 14px;
+}
+.route ol { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 12px; }
+.route li { counter-increment: s; display: grid; grid-template-columns: 32px 1fr; gap: 12px; align-items: start; }
+.route li > div { min-width: 0; }
+.route li::before {
+  content: counter(s); width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center;
+  font-family: "Poppins", sans-serif; font-weight: 600; font-size: 14px;
+  background: var(--accent); color: #093A3E;
+}
+em.es { font-style: italic; color: var(--primary); font-weight: 600; }
+.bridge { font-size: 18px; }
+.testimonial { display: flex; flex-direction: column; gap: 10px; }
+.testimonial .video { aspect-ratio: 16 / 9; background: linear-gradient(135deg, #0047AB 0%, #093A3E 100%); }
+.cta { display: flex; flex-direction: column; gap: 10px; align-items: stretch; padding-block: 6px 10px; }
+.cta .small { text-align: center; }
+.cta-title { margin: 0; text-align: center; font-size: 20px; }
+#paypal-buttons { min-height: 120px; background: #fff; border-radius: 12px; padding: 12px; }
+.signoff { font-family: "Poppins", sans-serif; font-weight: 500; color: var(--ink-soft); text-align: center; }
+footer { padding-top: 26px; font-size: 13px; color: var(--muted); text-align: center; }
+</style>
+<script src="/cuestionario-de-identidad/config.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <header class="brand">
+    <span class="logo">Progres<b>Spanish</b></span>
+    <span class="step-count" id="stepCount" aria-live="polite"></span>
+  </header>
+  <main id="app"></main>
+  <footer>© ProgresSpanish · Ale Sotelo</footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var CFG = window.QUIZ_CONFIG || { trialUrl: "#", systemeOptinUrls: {}, videos: {}, nickVideo: "" };
+  var app = document.getElementById("app");
+  var stepCount = document.getElementById("stepCount");
+
+  // ---------- Contenido ----------
+  var QUESTIONS = [
+    { q: "Why do you want to speak Spanish?", key: "motive", options: [
+      { t: "To connect with my partner or their family", v: "partner" },
+      { t: "I live in, or I'm moving to, a Spanish-speaking country", v: "abroad" },
+      { t: "I travel to Latin America or Spain often", v: "travel" },
+      { t: "For work, or just for me", v: "other" } ] },
+    { q: "How long have you been learning Spanish?", w: 2, options: [
+      { t: "I'm just getting started", id: "fresh-starter" },
+      { t: "A while, mostly with apps, videos or podcasts", id: "word-collector" },
+      { t: "A few years. I understand more than I can say", id: "silent-understander" },
+      { t: "I've started and stopped more than once", id: "on-and-off" } ] },
+    { q: "A native speaker starts talking to you. What happens?", w: 2, options: [
+      { t: "I catch a few words, but I'm mostly lost", id: "fresh-starter" },
+      { t: "I know a lot of the words, but I can't build an answer", id: "word-collector" },
+      { t: "I understand most of it, then freeze when it's my turn", id: "silent-understander" },
+      { t: "It depends on how much I've practiced lately", id: "on-and-off" } ] },
+    { q: "What have you tried so far?", w: 1, key: "tried", options: [
+      { t: "Nothing serious yet", id: "fresh-starter", v: "nada" },
+      { t: "Apps like Duolingo, YouTube, podcasts", id: "word-collector", v: "apps" },
+      { t: "Classes or a tutor", id: "silent-understander", v: "clases" },
+      { t: "A bit of everything, never for long", id: "on-and-off", v: "de-todo" } ] },
+    { q: "What frustrates you the most right now?", w: 2, options: [
+      { t: "I don't know where to begin", id: "fresh-starter" },
+      { t: "I know words, but I can't put them together", id: "word-collector" },
+      { t: "My mind goes blank when I have to speak", id: "silent-understander" },
+      { t: "I lose momentum and fall behind", id: "on-and-off" } ] },
+    { q: "Be honest: what does your Spanish week look like?", w: 2, options: [
+      { t: "I don't have a routine yet", id: "fresh-starter" },
+      { t: "A few minutes on an app most days", id: "word-collector" },
+      { t: "I study or listen, but I rarely speak", id: "silent-understander" },
+      { t: "Some weeks a lot, some weeks nothing", id: "on-and-off" } ] },
+    { q: "Are you ready to practice Spanish about 30 minutes a day?", key: "commit", options: [
+      { t: "Yes, I'm ready to start now", v: "ready" },
+      { t: "Yes, if I know exactly what to do each day", v: "plan" },
+      { t: "Not yet, I'm just exploring", v: "exploring" },
+      { t: "I'm only curious", v: "curious" } ] }
+  ];
+
+  var ES = function (s) { return '<em class="es" lang="es">' + s + '</em>'; };
+  var BRIDGE_END = " <strong>Try it free for 7 days.</strong>";
+
+  var RESULTS = {
+    "fresh-starter": {
+      name: "Fresh Starter",
+      title: function (n) { return "You're a Fresh Starter" + (n ? ", " + n : "") + ". And that's a great place to be."; },
+      body: [
+        "You want Spanish to be part of your life, but every app, video and list of “100 words” pulls you in a different direction. So you don't know where to begin, and it feels bigger than it is.",
+        "Here's the good news: you don't need 3,000 words. You need five verbs used well. With " + ES("hay, ser, estar, tener") + " and " + ES("gustar") + " you can describe what's around you, introduce yourself, say how you feel, and talk about what you have and what you like."
+      ],
+      route: [
+        "<strong>Learn the keys of pronunciation,</strong> so your Spanish sounds right from the start",
+        "<strong>The basic structures:</strong> affirmative, negative and questions",
+        "<strong>The essential verbs, one at a time:</strong> " + ES("hay, ser, estar, tener, gustar")
+      ],
+      bridge: "You can start with the 5 verbs on your own today. If you want the whole route in order, with my feedback and a live Q&A every week, that's what we do inside the ProgresSpanish community." + BRIDGE_END,
+      signoff: "¡Nos vemos adentro!"
+    },
+    "word-collector": {
+      name: "Word Collector",
+      title: function (n) { return "You're a Word Collector" + (n ? ", " + n : "") + ". You already have more Spanish than you think."; },
+      body: [
+        "You've done the work: apps, streaks, videos, podcasts. You recognize a lot of words. But when you try to say something real, the words don't connect into a sentence.",
+        "That's not a memory problem. Apps teach you words one by one, but nobody showed you the structures that hold them together. As an adult, your logical brain is your advantage here: once you see the pattern, you can build hundreds of sentences with it."
+      ],
+      route: [
+        "<strong>Choose one clear path</strong> and stop collecting new apps and resources",
+        "<strong>Learn how a sentence is built:</strong> affirmative, negative and questions",
+        "<strong>Learn the essential verbs and their expressions,</strong> like " + ES("tengo ganas de") + ", " + ES("tengo que") + " and " + ES("voy a")
+      ],
+      bridge: "You can start today with " + ES("tengo ganas de") + " + a verb: one affirmative, one negative and one question. If you want the structures in the right order, with someone correcting your sentences and a live Q&A every week, that's what we do inside the ProgresSpanish community." + BRIDGE_END,
+      signoff: "¡Te espero!"
+    },
+    "silent-understander": {
+      name: "Silent Understander",
+      title: function (n) { return "You're a Silent Understander" + (n ? ", " + n : "") + ". You understand more than you can say."; },
+      body: [
+        "You follow conversations, you get the jokes in shows, you read signs and menus. But when someone looks at you and waits for your answer, your mind goes blank.",
+        "That freeze is not a lack of talent. You've had years of input and almost no safe practice speaking. Speaking is a separate skill, and it grows with short, regular, low-pressure practice."
+      ],
+      route: [
+        "<strong>Don't just listen:</strong> every time you listen to Spanish, repeat it out loud",
+        "<strong>Answer simple real questions every day:</strong> your day, your plans, what you like",
+        "<strong>Create spaces where you can speak and make mistakes,</strong> like a language exchange or a conversation group"
+      ],
+      bridge: "Start today: answer " + ES("¿Cómo estuvo tu día?") + " out loud, in two or three sentences, and then ask it back: " + ES("¿Y tú?") + " The freeze goes away faster when someone asks you real questions every week in a safe space, and that's what we do inside the ProgresSpanish community." + BRIDGE_END,
+      signoff: "¡Vamos!"
+    },
+    "on-and-off": {
+      name: "On-and-Off Learner",
+      title: function (n) { return "You're an On-and-Off Learner" + (n ? ", " + n : "") + ". And you're not lazy."; },
+      body: [
+        "You start strong, life gets busy, and a few weeks later you feel like you're back at zero. So you start over again, with a new app or a new plan.",
+        "The problem isn't motivation. It's a routine that doesn't fit your real life. Four hours on a Sunday doesn't last; thirty minutes of focused, effective practice most days does. And you don't lose what you learned: you pick up right where you left off."
+      ],
+      route: [
+        "<strong>Create a plan:</strong> a weekly routine you can actually sustain",
+        "<strong>Go back to where you stopped,</strong> not to the beginning",
+        "<strong>Grow your practice little by little,</strong> starting with 15 minutes a day"
+      ],
+      bridge: "Start today with 15 minutes, a goal you can keep, and grow it little by little. What usually breaks the on-and-off cycle is not doing it alone, and that's what the ProgresSpanish community is for: a class to build your routine, lessons in order and a live Q&A with me every week." + BRIDGE_END,
+      signoff: "¡Esta vez sí!"
+    }
+  };
+  var IDS = ["fresh-starter", "word-collector", "silent-understander", "on-and-off"];
+
+  // ---------- Estado ----------
+  var answers = new Array(QUESTIONS.length).fill(null);
+  var current = 0;
+
+  function store(k, v) { try { localStorage.setItem("ps_quiz_" + k, v); } catch (e) {} }
+  function read(k) { try { return localStorage.getItem("ps_quiz_" + k) || ""; } catch (e) { return ""; } }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]; }); }
+  function scrollTop() { try { window.scrollTo({ top: 0, behavior: "smooth" }); } catch (e) { window.scrollTo(0, 0); } }
+
+  // ---------- Puntaje ----------
+  function score() {
+    var pts = {}; IDS.forEach(function (id) { pts[id] = 0; });
+    QUESTIONS.forEach(function (q, i) {
+      var a = answers[i];
+      if (a === null || !q.w) return;
+      var id = q.options[a].id; if (id) pts[id] += q.w;
+    });
+    var max = Math.max.apply(null, IDS.map(function (id) { return pts[id]; }));
+    var tied = IDS.filter(function (id) { return pts[id] === max; });
+    if (tied.length === 1) return tied[0];
+    var q5 = answers[4] !== null ? QUESTIONS[4].options[answers[4]].id : null;
+    if (q5 && tied.indexOf(q5) !== -1) return q5;
+    var q3 = answers[2] !== null ? QUESTIONS[2].options[answers[2]].id : null;
+    if (q3 && tied.indexOf(q3) !== -1) return q3;
+    return tied[0];
+  }
+
+  // ---------- Pantallas ----------
+  function renderStart() {
+    stepCount.textContent = "";
+    app.innerHTML =
+      '<section class="screen start">' +
+        '<p class="eyebrow">Free 2-minute quiz</p>' +
+        '<h1>What kind of Spanish learner are you?</h1>' +
+        '<p class="lead">Answer 7 quick questions and get your learner type, the reason you feel stuck, and the exact first step that fits you. It takes 2 minutes.</p>' +
+        '<div class="types" aria-hidden="true"><span>Fresh Starter</span><span>Word Collector</span><span>Silent Understander</span><span>On-and-Off Learner</span></div>' +
+        '<div><button class="btn" id="startBtn">Find my learner type</button></div>' +
+        '<p class="byline">Created by Ale, Spanish tutor based in Colombia. Almost 5 years, 8,000+ classes and 300+ students.</p>' +
+      '</section>';
+    document.getElementById("startBtn").addEventListener("click", function () { current = 0; renderQuestion(); });
+  }
+
+  function renderQuestion() {
+    var q = QUESTIONS[current];
+    stepCount.textContent = (current + 1) + " / " + QUESTIONS.length;
+    var letters = "ABCD";
+    var html =
+      '<section class="screen">' +
+        '<div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="' + QUESTIONS.length + '" aria-valuenow="' + current + '"><i style="width:' + ((current / QUESTIONS.length) * 100) + '%"></i></div>' +
+        '<button class="back" id="backBtn">← Back</button>' +
+        '<h2>' + esc(q.q) + '</h2>' +
+        '<div class="options" role="group" aria-label="' + esc(q.q) + '">';
+    q.options.forEach(function (o, i) {
+      html += '<button class="option" data-i="' + i + '" aria-pressed="' + (answers[current] === i) + '"><span class="key">' + letters[i] + '</span><span>' + esc(o.t) + '</span></button>';
+    });
+    html += '</div></section>';
+    app.innerHTML = html;
+    document.getElementById("backBtn").addEventListener("click", function () {
+      if (current === 0) renderStart(); else { current--; renderQuestion(); }
+    });
+    app.querySelectorAll(".option").forEach(function (b) {
+      b.addEventListener("click", function () {
+        answers[current] = Number(b.getAttribute("data-i"));
+        app.querySelectorAll(".option").forEach(function (x) { x.setAttribute("aria-pressed", x === b); });
+        setTimeout(next, 220);
+      });
+    });
+    scrollTop();
+  }
+
+  function next() {
+    if (current < QUESTIONS.length - 1) { current++; renderQuestion(); return; }
+    finish();
+  }
+
+  function finish() {
+    var id = score();
+    // Guardamos motivo, estilo y lo que probó (sirve para la página de resultado y para medir)
+    store("type", id);
+    store("motive", QUESTIONS[0].options[answers[0]].v);
+    store("tried", QUESTIONS[3].options[answers[3]].v);
+    var commit = QUESTIONS[6].options[answers[6]].v;
+    store("commit", commit);
+    var cold = commit === "exploring" || commit === "curious";
+    var optin = (cold && CFG.systemeOptinCurious) || (CFG.systemeOptinUrls || {})[id];
+    if (optin) { window.location.href = optin; return; }
+    renderEmail(id);
+  }
+
+  function renderEmail(id) {
+    stepCount.textContent = "";
+    app.innerHTML =
+      '<section class="screen">' +
+        '<div class="progress"><i style="width:100%"></i></div>' +
+        '<h2>Your result is ready</h2>' +
+        '<p class="lead">Where should I send it? You’ll see your learner type right away, plus a short video I recorded for people like you.</p>' +
+        '<form class="card" id="emailForm" novalidate>' +
+          '<label>First name<input id="fname" name="first_name" autocomplete="given-name" required></label>' +
+          '<label>Email<input id="email" name="email" type="email" autocomplete="email" inputmode="email" required></label>' +
+          '<p class="error" id="err" hidden>Please add your first name and a valid email.</p>' +
+          '<button class="btn block" type="submit">Show my result</button>' +
+          '<p class="small">No spam. One useful email a few times a week. Unsubscribe anytime.</p>' +
+        '</form>' +
+        '<p class="preview-note">Modo prueba: este correo no se guarda en Systeme. Se conecta cuando pegues las páginas de Systeme en config.js.</p>' +
+      '</section>';
+    document.getElementById("emailForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var n = document.getElementById("fname").value.trim();
+      var m = document.getElementById("email").value.trim();
+      if (!n || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)) { document.getElementById("err").hidden = false; return; }
+      store("name", n);
+      renderResult(id, n);
+    });
+    scrollTop();
+  }
+
+  function youtubeId(url) {
+    var m = String(url || "").match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([A-Za-z0-9_-]{11})/);
+    return m ? m[1] : "";
+  }
+  function videoBlock(url, label) {
+    var vm = String(url || "").match(/vimeo\.com\/(?:video\/)?(\d+)(?:\/([A-Za-z0-9]+))?(?:\?h=([A-Za-z0-9]+))?/);
+    if (vm) {
+      var h = vm[2] || vm[3];
+      return '<div class="video"><iframe src="https://player.vimeo.com/video/' + vm[1] + (h ? '?h=' + h + '&' : '?') + 'dnt=1" title="' + esc(label) + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>';
+    }
+    var yt = youtubeId(url);
+    if (yt) {
+      return '<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/' + yt + '?rel=0" title="' + esc(label) + '" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe></div>';
+    }
+    return '<div class="video"><div class="ph"><div class="play"></div><span>' + esc(label) + '</span></div></div>';
+  }
+
+  function renderResult(id, name) {
+    var r = RESULTS[id] || RESULTS["fresh-starter"];
+    stepCount.textContent = "";
+    var html =
+      '<section class="screen result">' +
+        '<span class="badge">Your learner type: ' + esc(r.name) + '</span>' +
+        '<h1>' + esc(r.title(name)) + '</h1>' +
+        videoBlock((CFG.videos || {})[id], "Your video from Ale · 2–3 min") +
+        '<div class="prose">' + r.body.map(function (p) { return '<p>' + p + '</p>'; }).join("") + '</div>' +
+        '<div class="route"><h3>Your route</h3><ol>' + r.route.map(function (s) { return '<li><div>' + s + '</div></li>'; }).join("") + '</ol></div>' +
+        '<p class="bridge">' + r.bridge + '</p>' +
+        '<div class="testimonial"><h3>Nick’s story</h3>' + videoBlock(CFG.nickVideo, "Nick, now speaking Spanish with his family") + '</div>' +
+        '<div class="cta">' +
+          (CFG.paypalPlanId
+            ? '<h3 class="cta-title">Start your 7-day free trial</h3>' +
+              '<div id="paypal-buttons"></div>' +
+              '<p class="small">Then USD 57/month, founding member price. Cancel anytime.</p>' +
+              '<p class="small" id="paypal-fallback" hidden><a href="' + esc(CFG.trialUrl || "#") + '" target="_top" rel="noopener">Payment not loading? Continue here</a></p>'
+            : '<a class="btn block" href="' + esc(CFG.trialUrl || "#") + '" target="_top" rel="noopener">Start my 7-day free trial</a>' +
+              '<p class="small">Then USD 57/month, founding member price. Cancel anytime.</p>') +
+          (CFG.messageUrl ? '<p class="msg-link">Not sure yet? <a href="' + esc(CFG.messageUrl) + '" target="_blank" rel="noopener">Send me a message on Instagram</a></p>' : '') +
+        '</div>' +
+        '<p class="signoff" lang="es">' + esc(r.signoff) + ' · Ale</p>' +
+      '</section>';
+    app.innerHTML = html;
+    if (CFG.paypalPlanId) mountPaypal();
+    scrollTop();
+  }
+
+  // Botones de PayPal (tarjeta o PayPal) directo en la página del resultado
+  var paypalLoading = null;
+  function loadPaypal() {
+    if (window.paypal) return Promise.resolve();
+    if (paypalLoading) return paypalLoading;
+    paypalLoading = new Promise(function (ok, fail) {
+      var sc = document.createElement("script");
+      sc.src = "https://www.paypal.com/sdk/js?client-id=" + encodeURIComponent(CFG.paypalClientId) + "&vault=true&intent=subscription";
+      sc.setAttribute("data-sdk-integration-source", "button-factory");
+      sc.onload = ok; sc.onerror = fail;
+      document.head.appendChild(sc);
+    });
+    return paypalLoading;
+  }
+  function mountPaypal() {
+    var box = document.getElementById("paypal-buttons");
+    var fb = document.getElementById("paypal-fallback");
+    var showFallback = function () { if (fb) fb.hidden = false; };
+    loadPaypal().then(function () {
+      if (!document.getElementById("paypal-buttons")) return;
+      window.paypal.Buttons({
+        style: { shape: "rect", color: "gold", layout: "vertical", label: "subscribe" },
+        createSubscription: function (data, actions) {
+          return actions.subscription.create({ plan_id: CFG.paypalPlanId });
+        },
+        onApprove: function () {
+          window.location.href = CFG.thankYouUrl || "/thank-you/";
+        }
+      }).render(box).catch(showFallback);
+    }).catch(showFallback);
+  }
+
+  // ---------- Arranque ----------
+  // Una página de resultado se abre con ?type=fresh-starter (o #fresh-starter)
+  function typeFromUrl() {
+    var t = "";
+    try { t = new URLSearchParams(window.location.search).get("type") || ""; } catch (e) {}
+    if (!t) t = (window.location.hash || "").replace("#", "");
+    if (t === "saved") t = read("type") || "";
+    return IDS.indexOf(t) !== -1 ? t : "";
+  }
+  var t = typeFromUrl();
+  if (t) renderResult(t, read("name")); else renderStart();
+  window.addEventListener("hashchange", function () { var h = typeFromUrl(); if (h) renderResult(h, read("name")); });
+})();
+</script>
+</body>
+</html>
