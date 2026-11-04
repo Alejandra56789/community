@@ -439,7 +439,7 @@ footer { padding-top: 26px; font-size: 13px; color: var(--muted); text-align: ce
     if (yt) {
       return '<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/' + yt + '?rel=0" title="' + esc(label) + '" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe></div>';
     }
-    return '<div class="video"><div class="ph"><div class="play"></div><span>' + esc(label) + '</span></div></div>';
+    return CFG.showVideoPlaceholder ? '<div class="video"><div class="ph"><div class="play"></div><span>' + esc(label) + '</span></div></div>' : '';
   }
 
   function renderResult(id, name, fromSysteme) {
@@ -454,7 +454,7 @@ footer { padding-top: 26px; font-size: 13px; color: var(--muted); text-align: ce
         '<div class="prose">' + r.body.map(function (p) { return '<p>' + p + '</p>'; }).join("") + '</div>' +
         '<div class="route"><h3>Your route</h3><ol>' + r.route.map(function (s) { return '<li><div>' + s + '</div></li>'; }).join("") + '</ol></div>' +
         '<p class="bridge">' + r.bridge + '</p>' +
-        '<div class="testimonial"><h3>Nick’s story</h3>' + videoBlock(CFG.nickVideo, "Nick, now speaking Spanish with his family") + '</div>' +
+        (videoBlock(CFG.nickVideo, "") ? '<div class="testimonial"><h3>Nick’s story</h3>' + videoBlock(CFG.nickVideo, "Nick, now speaking Spanish with his family") + '</div>' : '') +
         '<div class="cta">' +
           (CFG.paypalPlanId
             ? '<h3 class="cta-title">Start your 7-day free trial</h3>' +
