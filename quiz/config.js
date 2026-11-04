@@ -21,7 +21,7 @@ window.QUIZ_CONFIG = {
   // Mientras estén vacías (""), el quiz pide nombre y correo aquí mismo
   // y muestra el resultado directo (modo prueba: el correo NO se guarda).
   // Cada página debe redirigir a:
-  //   https://progresspanish.com/cuestionario-de-identidad/?type=<la identidad>
+  //   https://progresspanish.com/quiz/?type=<la identidad>
   // (por ejemplo ?type=fresh-starter).
   // Cuando las pegues, al terminar la pregunta 7 la persona va a su
   // página de Systeme, deja su correo y Systeme la trae de vuelta a su resultado.
@@ -36,7 +36,7 @@ window.QUIZ_CONFIG = {
   // "Not yet, I'm just exploring" o "I'm only curious".
   // Reciben correos suaves (valor + Instagram) en vez de la secuencia de venta.
   // En Systeme, que esta página redirija a:
-  //   https://progresspanish.com/cuestionario-de-identidad/?type=saved
+  //   https://progresspanish.com/quiz/?type=saved
   // Si la dejas vacía (""), van a la página de su resultado como todos.
   systemeOptinCurious: "",
 
