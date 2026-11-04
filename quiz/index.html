@@ -19,6 +19,7 @@
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
+.inbox-note { margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--accent-soft); font-size: 15px; color: var(--ink-soft); }
 .msg-link { margin: 14px 0 0; text-align: center; font-size: 15px; color: var(--ink-soft); }
 .msg-link a { color: var(--accent); font-weight: 600; }
 html, body { margin: 0; }
@@ -441,11 +442,12 @@ footer { padding-top: 26px; font-size: 13px; color: var(--muted); text-align: ce
     return '<div class="video"><div class="ph"><div class="play"></div><span>' + esc(label) + '</span></div></div>';
   }
 
-  function renderResult(id, name) {
+  function renderResult(id, name, fromSysteme) {
     var r = RESULTS[id] || RESULTS["fresh-starter"];
     stepCount.textContent = "";
     var html =
       '<section class="screen result">' +
+        (fromSysteme ? '<p class="inbox-note">I just sent this to your email too. Don\u2019t see it? Check your <strong>Promotions</strong> or <strong>Spam</strong> folder and move it to your main inbox, so you get the next ones.</p>' : '') +
         '<span class="badge">Your learner type: ' + esc(r.name) + '</span>' +
         '<h1>' + esc(r.title(name)) + '</h1>' +
         videoBlock((CFG.videos || {})[id], "Your video from Ale · 2–3 min") +
@@ -512,7 +514,7 @@ footer { padding-top: 26px; font-size: 13px; color: var(--muted); text-align: ce
     return IDS.indexOf(t) !== -1 ? t : "";
   }
   var t = typeFromUrl();
-  if (t) renderResult(t, read("name")); else renderStart();
+  if (t) renderResult(t, read("name"), true); else renderStart();
   window.addEventListener("hashchange", function () { var h = typeFromUrl(); if (h) renderResult(h, read("name")); });
 })();
 </script>
