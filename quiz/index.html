@@ -536,8 +536,33 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
     if (t === "saved") t = read("type") || "";
     return IDS.indexOf(t) !== -1 ? t : "";
   }
+  // Enlace "ver mi resultado" desde un correo, en otro navegador o celular:
+  // no sabemos el tipo, así que la persona lo elige (sin repetir el quiz).
+  function renderPicker() {
+    stepCount.textContent = "";
+    var html = '<section class="screen">' +
+      '<h2>Which learner type did you get?</h2>' +
+      '<p class="lead">Pick your type to open your video and your route again.</p>' +
+      '<div class="options" role="group">';
+    IDS.forEach(function (id, i) {
+      html += '<button class="option" data-id="' + id + '"><span class="key">' + "ABCD"[i] + '</span><span>' + esc(RESULTS[id].name) + '</span></button>';
+    });
+    html += '</div><p class="small" style="margin-top:18px">Don\u2019t remember? <a href="./">Take the quiz again</a>, it takes 2 minutes.</p></section>';
+    app.innerHTML = html;
+    app.querySelectorAll(".option").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var id = b.getAttribute("data-id"); store("type", id);
+        try { history.replaceState(null, "", "?type=" + id); } catch (e) {}
+        renderResult(id, read("name"), false);
+      });
+    });
+  }
+  var wantsSaved = false;
+  try { wantsSaved = new URLSearchParams(window.location.search).get("type") === "saved"; } catch (e) {}
   var t = typeFromUrl();
-  if (t) { trackLead(t); renderResult(t, read("name"), true); } else renderStart();
+  if (t) { trackLead(t); renderResult(t, read("name"), true); }
+  else if (wantsSaved) renderPicker();
+  else renderStart();
   window.addEventListener("hashchange", function () { var h = typeFromUrl(); if (h) renderResult(h, read("name")); });
 })();
 </script>
