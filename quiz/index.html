@@ -185,6 +185,23 @@ em.es { font-style: italic; color: var(--primary); font-weight: 600; }
 footer { padding-top: 26px; font-size: 13px; color: var(--muted); text-align: center; }
 </style>
 <script src="/quiz/config.js"></script>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '633455245862715');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 <div class="wrap">
@@ -313,6 +330,11 @@ footer { padding-top: 26px; font-size: 13px; color: var(--muted); text-align: ce
   var answers = new Array(QUESTIONS.length).fill(null);
   var current = 0;
 
+  function trackLead(id) {
+    if (read("lead")) return;
+    store("lead", "1");
+    try { if (window.fbq) window.fbq("track", "Lead", { content_name: id }); } catch (e) {}
+  }
   function store(k, v) { try { localStorage.setItem("ps_quiz_" + k, v); } catch (e) {} }
   function read(k) { try { return localStorage.getItem("ps_quiz_" + k) || ""; } catch (e) { return ""; } }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]; }); }
@@ -420,6 +442,7 @@ footer { padding-top: 26px; font-size: 13px; color: var(--muted); text-align: ce
       var m = document.getElementById("email").value.trim();
       if (!n || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)) { document.getElementById("err").hidden = false; return; }
       store("name", n);
+      trackLead(id);
       renderResult(id, n);
     });
     scrollTop();
@@ -514,7 +537,7 @@ footer { padding-top: 26px; font-size: 13px; color: var(--muted); text-align: ce
     return IDS.indexOf(t) !== -1 ? t : "";
   }
   var t = typeFromUrl();
-  if (t) renderResult(t, read("name"), true); else renderStart();
+  if (t) { trackLead(t); renderResult(t, read("name"), true); } else renderStart();
   window.addEventListener("hashchange", function () { var h = typeFromUrl(); if (h) renderResult(h, read("name")); });
 })();
 </script>
