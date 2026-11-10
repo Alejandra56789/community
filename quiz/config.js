@@ -26,10 +26,10 @@ window.QUIZ_CONFIG = {
   // Cuando las pegues, al terminar la pregunta 7 la persona va a su
   // página de Systeme, deja su correo y Systeme la trae de vuelta a su resultado.
   systemeOptinUrls: {
-    "fresh-starter": "",
-    "word-collector": "",
-    "silent-understander": "",
-    "on-and-off": ""
+    "fresh-starter": "https://alejandra-sotelorubio.systeme.io/d3945044",
+    "word-collector": "https://alejandra-sotelorubio.systeme.io/d3945044",
+    "silent-understander": "https://alejandra-sotelorubio.systeme.io/d3945044",
+    "on-and-off": "https://alejandra-sotelorubio.systeme.io/d3945044"
   },
 
   // Página de captura de Systeme para quienes responden en la pregunta 7
