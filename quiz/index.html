@@ -177,6 +177,7 @@ em.es { font-style: italic; color: var(--primary); font-weight: 600; }
 .bridge { font-size: 18px; }
 .testimonial { display: flex; flex-direction: column; gap: 10px; }
 .testimonial .video { aspect-ratio: 16 / 9; background: linear-gradient(135deg, #0047AB 0%, #093A3E 100%); }
+.testimonial .video.vertical { aspect-ratio: 9 / 16; width: 100%; max-width: 340px; margin-left: auto; margin-right: auto; }
 .cta { display: flex; flex-direction: column; gap: 10px; align-items: stretch; padding-block: 6px 10px; }
 .cta .small { text-align: center; }
 .cta-title { margin: 0; text-align: center; font-size: 20px; }
@@ -477,7 +478,7 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
         '<div class="prose">' + r.body.map(function (p) { return '<p>' + p + '</p>'; }).join("") + '</div>' +
         '<div class="route"><h3>Your route</h3><ol>' + r.route.map(function (s) { return '<li><div>' + s + '</div></li>'; }).join("") + '</ol></div>' +
         '<p class="bridge">' + r.bridge + '</p>' +
-        (videoBlock(CFG.nickVideo, "") ? '<div class="testimonial"><h3>Nick’s story</h3>' + videoBlock(CFG.nickVideo, "Nick, now speaking Spanish with his family") + '</div>' : '') +
+        (videoBlock(CFG.nickVideo, "") ? '<div class="testimonial"><h3>Nick’s story</h3>' + videoBlock(CFG.nickVideo, "Nick, now speaking Spanish with his family").replace('class="video"', 'class="video vertical"') + '</div>' : '') +
         '<div class="cta">' +
           (CFG.paypalPlanId
             ? '<h3 class="cta-title">Start your 7-day free trial</h3>' +
