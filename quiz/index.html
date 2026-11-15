@@ -464,9 +464,9 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
       var h = vm[2] || vm[3];
       var src = 'https://player.vimeo.com/video/' + vm[1] + (h ? '?h=' + h + '&' : '?') + 'title=0&byline=0&portrait=0&badge=0&vimeo_logo=0&dnt=1';
       if (auto) {
-        // Los navegadores solo permiten reproducir solo si arranca en silencio: botón grande para activar el sonido.
-        return '<div class="video"><iframe id="main-video" src="' + src + '&autoplay=1&muted=1&playsinline=1" data-src="' + src + '" title="' + esc(label) + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>' +
-          '<button type="button" class="unmute" id="unmute">\uD83D\uDD0A Tap to turn on the sound</button></div>';
+        // Intenta arrancar con sonido; si el navegador lo bloquea, Vimeo arranca en silencio y mostramos el botón.
+        return '<div class="video"><iframe id="main-video" src="' + src + '&autoplay=1&autopause=0&playsinline=1" data-src="' + src + '" title="' + esc(label) + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>' +
+          '<button type="button" class="unmute" id="unmute" hidden>\uD83D\uDD0A Tap to turn on the sound</button></div>';
       }
       return '<div class="video"><iframe src="' + src + '" title="' + esc(label) + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>';
     }
@@ -490,8 +490,17 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
       sc.onerror = function () { cb(); };
       document.head.appendChild(sc);
     }
+    function check(first) {
+      if (!player) return;
+      Promise.all([player.getMuted(), player.getVolume(), player.getPaused()]).then(function (v) {
+        btn.hidden = !(v[0] || v[1] === 0 || (first === true && v[2]));
+      }).catch(function () {});
+    }
     withPlayer(function () {
-      if (player) player.on("volumechange", function (d) { if (d && d.volume > 0) hide(); });
+      if (!player) { btn.hidden = false; return; }
+      player.on("play", function () { check(); });
+      player.on("volumechange", function () { check(); });
+      setTimeout(function () { check(true); }, 2500);
     });
     btn.addEventListener("click", function () {
       hide();
