@@ -150,6 +150,10 @@ input {
   background: linear-gradient(135deg, #093A3E 0%, #0B4F55 100%);
   display: grid; place-items: center; box-shadow: var(--shadow);
 }
+.unmute { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); z-index: 2; border: 0; cursor: pointer;
+  background: #FED554; color: #093A3E; font: 600 15px/1.2 "Poppins", sans-serif; padding: 11px 18px; border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.28); white-space: nowrap; }
+.unmute[hidden] { display: none; }
 .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .video .ph { text-align: center; color: #EAF4F3; padding: 16px; display: grid; gap: 10px; justify-items: center; }
 .video .play {
@@ -454,17 +458,52 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
     var m = String(url || "").match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([A-Za-z0-9_-]{11})/);
     return m ? m[1] : "";
   }
-  function videoBlock(url, label) {
+  function videoBlock(url, label, auto) {
     var vm = String(url || "").match(/vimeo\.com\/(?:video\/)?(\d+)(?:\/([A-Za-z0-9]+))?(?:\?h=([A-Za-z0-9]+))?/);
     if (vm) {
       var h = vm[2] || vm[3];
-      return '<div class="video"><iframe src="https://player.vimeo.com/video/' + vm[1] + (h ? '?h=' + h + '&' : '?') + 'title=0&byline=0&portrait=0&badge=0&vimeo_logo=0&dnt=1" title="' + esc(label) + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>';
+      var src = 'https://player.vimeo.com/video/' + vm[1] + (h ? '?h=' + h + '&' : '?') + 'title=0&byline=0&portrait=0&badge=0&vimeo_logo=0&dnt=1';
+      if (auto) {
+        // Los navegadores solo permiten reproducir solo si arranca en silencio: botón grande para activar el sonido.
+        return '<div class="video"><iframe id="main-video" src="' + src + '&autoplay=1&muted=1&playsinline=1" data-src="' + src + '" title="' + esc(label) + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>' +
+          '<button type="button" class="unmute" id="unmute">\uD83D\uDD0A Tap to turn on the sound</button></div>';
+      }
+      return '<div class="video"><iframe src="' + src + '" title="' + esc(label) + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>';
     }
     var yt = youtubeId(url);
     if (yt) {
       return '<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/' + yt + '?rel=0" title="' + esc(label) + '" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe></div>';
     }
     return CFG.showVideoPlaceholder ? '<div class="video"><div class="ph"><div class="play"></div><span>' + esc(label) + '</span></div></div>' : '';
+  }
+
+  function setupUnmute() {
+    var btn = document.getElementById("unmute"), frame = document.getElementById("main-video");
+    if (!btn || !frame) return;
+    var player = null;
+    function hide() { btn.hidden = true; }
+    function withPlayer(cb) {
+      if (player) return cb();
+      if (window.Vimeo && window.Vimeo.Player) { player = new window.Vimeo.Player(frame); return cb(); }
+      var sc = document.createElement("script"); sc.src = "https://player.vimeo.com/api/player.js";
+      sc.onload = function () { player = new window.Vimeo.Player(frame); cb(); };
+      sc.onerror = function () { cb(); };
+      document.head.appendChild(sc);
+    }
+    withPlayer(function () {
+      if (player) player.on("volumechange", function (d) { if (d && d.volume > 0) hide(); });
+    });
+    btn.addEventListener("click", function () {
+      hide();
+      if (player) {
+        player.setMuted(false).catch(function () {});
+        player.setVolume(1).catch(function () {});
+        player.setCurrentTime(0).catch(function () {});
+        player.play().catch(function () {});
+      } else {
+        frame.src = frame.getAttribute("data-src") + "&autoplay=1&playsinline=1";
+      }
+    });
   }
 
   function renderResult(id, name, fromSysteme) {
@@ -475,7 +514,7 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
         (fromSysteme ? '<p class="inbox-note">I just sent this to your email too. Don\u2019t see it? Check your <strong>Promotions</strong> or <strong>Spam</strong> folder and move it to your main inbox, so you get the next ones.</p>' : '') +
         '<span class="badge">Your learner type: ' + esc(r.name) + '</span>' +
         '<h1>' + esc(r.title(cap(name))) + '</h1>' +
-        videoBlock((CFG.videos || {})[id], "Your video from Ale · 2–3 min") +
+        videoBlock((CFG.videos || {})[id], "Your video from Ale · 2–3 min", true) +
         '<div class="prose">' + r.body.map(function (p) { return '<p>' + p + '</p>'; }).join("") + '</div>' +
         '<div class="route"><h3>Your route</h3><ol>' + r.route.map(function (s) { return '<li><div>' + s + '</div></li>'; }).join("") + '</ol></div>' +
         '<p class="bridge">' + r.bridge + '</p>' +
@@ -494,6 +533,7 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
       '</section>';
     app.innerHTML = html;
     if (CFG.paypalPlanId) mountPaypal();
+    setupUnmute();
     scrollTop();
   }
 
