@@ -338,6 +338,7 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
   }
   function store(k, v) { try { localStorage.setItem("ps_quiz_" + k, v); } catch (e) {} }
   function read(k) { try { return localStorage.getItem("ps_quiz_" + k) || ""; } catch (e) { return ""; } }
+  function cap(s) { s = String(s || "").trim(); return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]; }); }
   function scrollTop() { try { window.scrollTo({ top: 0, behavior: "smooth" }); } catch (e) { window.scrollTo(0, 0); } }
 
@@ -457,7 +458,7 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
     var vm = String(url || "").match(/vimeo\.com\/(?:video\/)?(\d+)(?:\/([A-Za-z0-9]+))?(?:\?h=([A-Za-z0-9]+))?/);
     if (vm) {
       var h = vm[2] || vm[3];
-      return '<div class="video"><iframe src="https://player.vimeo.com/video/' + vm[1] + (h ? '?h=' + h + '&' : '?') + 'dnt=1" title="' + esc(label) + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>';
+      return '<div class="video"><iframe src="https://player.vimeo.com/video/' + vm[1] + (h ? '?h=' + h + '&' : '?') + 'title=0&byline=0&portrait=0&badge=0&vimeo_logo=0&dnt=1" title="' + esc(label) + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>';
     }
     var yt = youtubeId(url);
     if (yt) {
@@ -473,7 +474,7 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
       '<section class="screen result">' +
         (fromSysteme ? '<p class="inbox-note">I just sent this to your email too. Don\u2019t see it? Check your <strong>Promotions</strong> or <strong>Spam</strong> folder and move it to your main inbox, so you get the next ones.</p>' : '') +
         '<span class="badge">Your learner type: ' + esc(r.name) + '</span>' +
-        '<h1>' + esc(r.title(name)) + '</h1>' +
+        '<h1>' + esc(r.title(cap(name))) + '</h1>' +
         videoBlock((CFG.videos || {})[id], "Your video from Ale · 2–3 min") +
         '<div class="prose">' + r.body.map(function (p) { return '<p>' + p + '</p>'; }).join("") + '</div>' +
         '<div class="route"><h3>Your route</h3><ol>' + r.route.map(function (s) { return '<li><div>' + s + '</div></li>'; }).join("") + '</ol></div>' +
