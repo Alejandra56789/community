@@ -54,5 +54,5 @@ window.QUIZ_CONFIG = {
   },
 
   // Enlace de YouTube del testimonio de Nick (ya editado).
-  nickVideo: ""
+  nickVideo: "https://vimeo.com/1200886945"
 };
