@@ -47,10 +47,10 @@ window.QUIZ_CONFIG = {
   // Enlaces de tus 4 videos, de Vimeo o YouTube (pueden ser privados/"No listados").
   // Ejemplos: "https://vimeo.com/123456789/abcdef1234" o "https://youtu.be/AbCdEfGhIjK"
   videos: {
-    "fresh-starter": "",
-    "word-collector": "",
-    "silent-understander": "",
-    "on-and-off": ""
+    "fresh-starter": "https://vimeo.com/1246928358",
+    "word-collector": "https://vimeo.com/1246928357",
+    "silent-understander": "https://vimeo.com/1246928355",
+    "on-and-off": "https://vimeo.com/1246928356"
   },
 
   // Enlace de YouTube del testimonio de Nick (ya editado).
