@@ -611,7 +611,8 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
   var wantsSaved = false;
   try { wantsSaved = new URLSearchParams(window.location.search).get("type") === "saved"; } catch (e) {}
   var t = typeFromUrl();
-  if (t) { trackLead(t); renderResult(t, read("name"), true); }
+  // Lead solo al volver de Systeme (?type=saved), no al abrir un enlace directo de resultado
+  if (t) { if (wantsSaved) trackLead(t); renderResult(t, read("name"), true); }
   else if (wantsSaved) renderPicker();
   else renderStart();
   window.addEventListener("hashchange", function () { var h = typeFromUrl(); if (h) renderResult(h, read("name")); });
