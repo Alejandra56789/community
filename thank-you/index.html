@@ -97,7 +97,7 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=Purchase&noscript=1"
       </div>
       <span class="eyebrow">Payment confirmed</span>
       <h1>You're in. <span class="turq">Welcome to the community!</span></h1>
-      <p class="lead">Your spot is secured and your access is being set up right now. Here's exactly what to do next so you start speaking real Spanish from day one.</p>
+      <p class="lead">Your spot is secured and I'm setting up your access personally. Here's exactly what to do next so you start speaking real Spanish from day one.</p>
     </div>
   </header>
 
@@ -110,15 +110,16 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=Purchase&noscript=1"
         <div class="step">
           <span class="num">1</span>
           <div>
-            <h3>Check your email</h3>
-            <p>We just sent your welcome email with your login details and community invite. If you don't see it in a couple of minutes, check your <strong>spam or promotions</strong> folder and mark it as "not spam" so you never miss an update.</p>
+            <h3>Watch for your invitation</h3>
+            <p>Within <strong>12 hours</strong> (usually much sooner) I'll add you to our private community on <strong>Skool</strong>, using the email from your PayPal payment. You'll get an invitation email from Skool. If you don't see it, check your <strong>spam or promotions</strong> folder.</p>
           </div>
         </div>
         <div class="step">
           <span class="num">2</span>
           <div>
             <h3>Join the private community</h3>
-            <p>Tap the button below (or the link in your email) to enter the private practice community. Introduce yourself in the welcome channel — your accountability and practice partners are already there.</p>
+            <p>Open the invitation from Skool and create your password (or log in if you already use Skool). Then introduce yourself in the welcome channel — your practice partners are already there.</p>
+            <p id="skool-wrap" hidden style="margin-top:12px"><a id="skool-link" class="inline" href="#" target="_blank" rel="noopener">Already on Skool? Request access here →</a> I'll approve you as soon as I see your request.</p>
           </div>
         </div>
         <div class="step">
@@ -142,7 +143,7 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=Purchase&noscript=1"
   <!-- CTA -->
   <section class="cta-band">
     <div class="wrap">
-      <p class="help">Need help or didn't get your email? Write to <a href="mailto:contact@progresspanish.com">contact@progresspanish.com</a> and we'll sort it out fast.</p>
+      <p class="help">Didn't get your invitation after 12 hours? Write to <a href="mailto:contact@progresspanish.com">contact@progresspanish.com</a> and we'll sort it out fast.</p>
     </div>
   </section>
 
@@ -154,5 +155,10 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=Purchase&noscript=1"
     </div>
   </footer>
 
+<script>
+  // Pega aquí el enlace de tu comunidad de Skool (ej. "https://www.skool.com/tu-comunidad/about"). Vacío = el enlace no se muestra.
+  var SKOOL_URL = "";
+  if (SKOOL_URL) { document.getElementById("skool-link").href = SKOOL_URL; document.getElementById("skool-wrap").hidden = false; }
+</script>
 </body>
 </html>
