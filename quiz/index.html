@@ -94,6 +94,9 @@ p { margin: 0; }
   outline: 3px solid var(--focus); outline-offset: 2px;
 }
 .btn.block { width: 100%; }
+.btn.ghost { background: transparent; color: var(--primary); box-shadow: inset 0 0 0 2px var(--primary); }
+.btn.ghost:hover { background: rgba(0,71,171,.06); }
+.call-note { margin: 0; text-align: center; font-size: 15px; color: var(--ink-soft); }
 .back {
   appearance: none; background: none; border: 0; cursor: pointer; padding: 6px 2px;
   font-family: "Poppins", sans-serif; font-size: 14px; color: var(--muted); align-self: flex-start;
@@ -335,6 +338,12 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
   var answers = new Array(QUESTIONS.length).fill(null);
   var current = 0;
 
+  // Medición del embudo: eventos personalizados del píxel de Meta, numerados por paso
+  // para verlos en orden en el Administrador de eventos.
+  function step(name, data) {
+    try { if (window.fbq) window.fbq("trackCustom", name, data || {}); } catch (e) {}
+  }
+  var started = false;
   function trackLead(id) {
     if (read("lead")) return;
     store("lead", "1");
@@ -376,7 +385,10 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
         '<div><button class="btn" id="startBtn">Find my learner type</button></div>' +
         '<p class="byline">Created by Ale, Spanish tutor based in Colombia. Almost 5 years, 8,000+ classes and 300+ students.</p>' +
       '</section>';
-    document.getElementById("startBtn").addEventListener("click", function () { current = 0; renderQuestion(); });
+    document.getElementById("startBtn").addEventListener("click", function () {
+      if (!started) { started = true; step("Paso1_EmpezoQuiz"); }
+      current = 0; renderQuestion();
+    });
   }
 
   function renderQuestion() {
@@ -422,7 +434,8 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
     store("commit", commit);
     var cold = commit === "exploring" || commit === "curious";
     var optin = (cold && CFG.systemeOptinCurious) || (CFG.systemeOptinUrls || {})[id];
-    if (optin) { window.location.href = optin; return; }
+    step("Paso2_TerminoQuiz", { content_name: id, compromiso: commit });
+    if (optin) { setTimeout(function () { window.location.href = optin; }, 300); return; }
     renderEmail(id);
   }
 
@@ -454,6 +467,13 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
     scrollTop();
   }
 
+  // Marca la visita a la landing como venida del quiz (para medir el paso 7)
+  function withFrom(url) {
+    url = String(url || "#");
+    if (url === "#") return url;
+    var parts = url.split("#");
+    return parts[0] + (parts[0].indexOf("?") === -1 ? "?" : "&") + "from=quiz" + (parts[1] ? "#" + parts[1] : "");
+  }
   function youtubeId(url) {
     var m = String(url || "").match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([A-Za-z0-9_-]{11})/);
     return m ? m[1] : "";
@@ -477,6 +497,7 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
     return CFG.showVideoPlaceholder ? '<div class="video"><div class="ph"><div class="play"></div><span>' + esc(label) + '</span></div></div>' : '';
   }
 
+  var videoType = "";
   function setupUnmute() {
     var btn = document.getElementById("unmute"), frame = document.getElementById("main-video");
     if (!btn || !frame) return;
@@ -500,6 +521,19 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
       if (!player) { btn.hidden = false; return; }
       player.on("play", function () { check(); });
       player.on("volumechange", function () { check(); });
+      // Medición: cuánto ven del video CON sonido (el autoplay en silencio no cuenta)
+      var sent = {};
+      player.on("timeupdate", function (d) {
+        player.getMuted().then(function (muted) {
+          if (muted) return;
+          player.getVolume().then(function (vol) {
+            if (!vol) return;
+            if (!sent.a) { sent.a = 1; step("Paso5_VideoConSonido", { content_name: videoType }); }
+            if (d.percent >= 0.5 && !sent.b) { sent.b = 1; step("Paso5b_VideoMitad", { content_name: videoType }); }
+            if (d.percent >= 0.9 && !sent.c) { sent.c = 1; step("Paso5c_VideoCompleto", { content_name: videoType }); }
+          }).catch(function () {});
+        }).catch(function () {});
+      });
       setTimeout(function () { check(true); }, 2500);
     });
     btn.addEventListener("click", function () {
@@ -534,14 +568,24 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
               '<div id="paypal-buttons"></div>' +
               '<p class="small">Then USD 57/month, founding member price. Cancel anytime.</p>' +
               '<p class="small" id="paypal-fallback" hidden><a href="' + esc(CFG.trialUrl || "#") + '" target="_top" rel="noopener">Payment not loading? Continue here</a></p>'
-            : '<a class="btn block" href="' + esc(CFG.trialUrl || "#") + '" target="_top" rel="noopener">Start my 7-day free trial</a>' +
+            : '<a class="btn block" id="trialBtn" href="' + esc(withFrom(CFG.trialUrl)) + '" target="_top" rel="noopener">Start my 7-day free trial</a>' +
               '<p class="small">Then USD 57/month, founding member price. Cancel anytime.</p>') +
-          (CFG.messageUrl ? '<p class="msg-link">Not sure yet? <a href="' + esc(CFG.messageUrl) + '" target="_blank" rel="noopener">Send me a message on Instagram</a></p>' : '') +
+          (CFG.callUrl ? '<p class="call-note" style="margin-top:14px">Not sure if it\u2019s for you? Let\u2019s talk first.</p>' +
+            '<a class="btn block ghost" id="callBtn" href="' + esc(CFG.callUrl) + '" target="_blank" rel="noopener">Book a free 15-min call with me</a>' : '') +
+          (CFG.messageUrl ? '<p class="msg-link">' + (CFG.callUrl ? 'Prefer to write?' : 'Not sure yet?') + ' <a href="' + esc(CFG.messageUrl) + '" target="_blank" rel="noopener">Send me a message on Instagram</a></p>' : '') +
         '</div>' +
         '<p class="signoff" lang="es">' + esc(r.signoff) + ' · Ale</p>' +
       '</section>';
     app.innerHTML = html;
     if (CFG.paypalPlanId) mountPaypal();
+    videoType = id;
+    step("Paso4_VioResultado", { content_name: id });
+    var tb = document.getElementById("trialBtn");
+    if (tb) tb.addEventListener("click", function () { step("Paso6_ClicPrueba", { content_name: id }); });
+    var cb = document.getElementById("callBtn");
+    if (cb) cb.addEventListener("click", function () { step("Paso6_ClicLlamada", { content_name: id }); });
+    var ml = app.querySelector(".msg-link a");
+    if (ml) ml.addEventListener("click", function () { step("Paso6_ClicInstagram", { content_name: id }); });
     setupUnmute();
     scrollTop();
   }
