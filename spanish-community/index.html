@@ -13,6 +13,11 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '633455245862715');
 fbq('track', 'PageView');
+// Medición del embudo: visita a la landing (desde el quiz o desde otro lado)
+(function () {
+  var fromQuiz = /[?&]from=quiz/.test(location.search) || /\/quiz/.test(document.referrer || '');
+  fbq('trackCustom', 'Paso7_VioLanding', { origen: fromQuiz ? 'quiz' : 'otro' });
+})();
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
@@ -666,6 +671,7 @@ src="https://www.facebook.com/tr?id=633455245862715&ev=PageView&noscript=1"
     paypal.Buttons({
       style: { shape: 'rect', color: 'gold', layout: 'vertical', label: 'subscribe' },
       createSubscription: function(data, actions) {
+        try { fbq('trackCustom', 'Paso8_ClicPayPal'); fbq('track', 'InitiateCheckout', { value: 57.00, currency: 'USD' }); } catch (e) {}
         return actions.subscription.create({
           plan_id: 'P-3RA10924ET035924YNIRTWBA'
         });

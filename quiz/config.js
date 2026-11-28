@@ -40,6 +40,11 @@ window.QUIZ_CONFIG = {
   // Si la dejas vacía (""), van a la página de su resultado como todos.
   systemeOptinCurious: "",
 
+  // Botón "Book a free 15-min call with me" debajo del botón de prueba.
+  // Pega aquí tu enlace de agenda (Calendly, Google Calendar, etc.).
+  // Déjalo vacío ("") para quitarlo.
+  callUrl: "",
+
   // Enlace pequeño "Not sure yet? Send me a message" debajo del botón de prueba.
   // Déjalo vacío ("") para quitarlo.
   messageUrl: "https://ig.me/m/progresspanish",
